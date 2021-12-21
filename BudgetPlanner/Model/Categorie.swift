@@ -6,18 +6,20 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Categorie {
+class Categorie: Object {
     
-    internal init(nameOfImage: String, name: String) {
+    convenience init(nameOfImage: String, name: String) {
+        self.init()
         self.nameOfImage = nameOfImage
         self.name = name
         //self.payments = payments
     }
     
-    var nameOfImage: String
-    var name: String
-    var payments: [Payment] = []
+    @objc dynamic var nameOfImage: String?
+    @objc dynamic var name: String?
+    dynamic var payments: [Payment] = []
 }
 
 class Categories {

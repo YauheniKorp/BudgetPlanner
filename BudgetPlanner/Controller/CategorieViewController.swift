@@ -90,7 +90,7 @@ class CategorieViewController: UIViewController {
         view.addSubview(dateLabel)
         self.view.addSubview(tf)
         self.view.addSubview(dotButton)
-        OneAndOnlyUser.shared.user.methodsOfPayment?.append(PaymentMethod(nameOfImage: "card", nameOfMethod: "carrrr"))
+        OneAndOnlyUser.shared.user.methodsOfPayment!.append(PaymentMethod(nameOfImage: "card", nameOfMethod: "carrrr"))
         
         let stackView1 = UIStackView(arrangedSubviews: [numButtons[0],numButtons[1],numButtons[2], signButtons[0]])
         let stackView2 = UIStackView(arrangedSubviews: [numButtons[3],numButtons[4],numButtons[5], signButtons[1]])
@@ -176,7 +176,7 @@ class CategorieViewController: UIViewController {
     
     @objc
     func addPayment() {
-        self.categorie.payments.append(Payment(sum: Double(self.tf.categorieTextField.text!) ?? 0, date: Date(), keyNote: ""))
+        self.categorie.payments.append(Payment(sum: Double(self.tf.categorieTextField.text!) ?? 0, date: Date(), keyNote: "", categorieOfPayment: self.categorie))
         print(self.categorie.payments)
     }
     

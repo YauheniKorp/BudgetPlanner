@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SideMenu
 
 class ViewController: UIViewController {
-    
+    var menu: SideMenuNavigationController?
     var mainUser = OneAndOnlyUser.shared.user
     
     private lazy var pageControll: UIPageControl = {
@@ -26,15 +27,17 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
     
-    var scrollViewOfPage = UIScrollView()
+    private var profileButton = UIButton()
+    
+    private var scrollViewOfPage = UIScrollView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //menu = SideMenuNavigationController(rootViewController: self)
         self.title = "Wallet"
-        let customView = ProfilePhotoView()
+        let customView = ProfilePhotoView(imageButton: profileButton)
         let navItem1 = UIBarButtonItem(customView: customView)
         
         let leftButton = UIBarButtonItem(title: "Hello, \(mainUser.name) \(mainUser.surname)", image: nil, primaryAction: nil, menu: nil)
@@ -43,7 +46,7 @@ class ViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = navItem1
         
         self.view.backgroundColor = .white
-                
+        
         self.view.addSubview(pageControll)
         self.view.addSubview(scrollViewOfPage)
         self.view.addSubview(addButton)
@@ -71,6 +74,8 @@ class ViewController: UIViewController {
             
         ])
         
+        
+        
         scrollViewOfPage.backgroundColor = .clear
         
         guard let methodsOfPayment = mainUser.methodsOfPayment else {return}
@@ -79,6 +84,22 @@ class ViewController: UIViewController {
         addButton.addTarget(self, action: #selector(openCategoriesCollectionVC), for: .touchUpInside)
         
         print(scrollViewOfPage.subviews.count)
+        profileButton.addTarget(self, action: #selector(profilePhotoAction), for: .touchUpInside)
+    }
+    
+    @objc
+    func profilePhotoAction() {
+        
+        menu = SideMenuNavigationController(rootViewController: SettingsViewController())
+        menu?.menuWidth = self.view.frame.width * 0.8
+        menu?.blurEffectStyle = .systemThickMaterialLight
+        menu?.presentDuration = 1.0
+        menu?.dismissDuration = 1.0
+        menu?.presentationStyle = .viewSlideOutMenuIn
+        menu?.pushStyle = .subMenu
+        present(menu!, animated: true, completion: nil)
+        
+        //SideMenuManager.default.ri
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +112,12 @@ class ViewController: UIViewController {
         pageControll.frame = CGRect(x: 100, y: 420, width: self.view.frame.width - 200, height: 30)
     }
     
+//    @objc
+//    func asd() {
+//        let vc = RegistrationViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
+    
     @objc
     func openCategoriesCollectionVC() {
         let layout = UICollectionViewFlowLayout()
@@ -99,23 +126,24 @@ class ViewController: UIViewController {
         //layout.estimatedItemSize = CGSize(width: 250, height: 250)
         let vc = CategoriesCollectionViewController(collectionViewLayout: layout)
         //vc.navigationController?.navigationBar.prefersLargeTitles = false
-//        vc.modalPresentationStyle = .fullScreen
+        //        vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
         
-//        present(vc, animated: true, completion: nil)
+        //        present(vc, animated: true, completion: nil)
     }
     
     @objc
     func changeValueOfScrollPage(_ sender: UIPageControl) {
         let current = sender.currentPage
+        //print(current)
         scrollViewOfPage.setContentOffset(CGPoint(x: CGFloat(current) * self.view.frame.size.width, y: 0), animated: true)
     }
     
-//    @objc
-//    func pri() {
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
-//    }
-//
+    //    @objc
+    //    func pri() {
+    //        self.navigationController?.navigationBar.prefersLargeTitles = true
+    //    }
+    //
     func configureScrollView(_ cards: [PaymentMethod]) {
         scrollViewOfPage.contentSize = CGSize(width: view.frame.size.width * CGFloat(cards.count), height: scrollViewOfPage.frame.size.height)
         scrollViewOfPage.isPagingEnabled = true
@@ -138,6 +166,8 @@ class ViewController: UIViewController {
 
 extension ViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         pageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.width)))
+        //print(pageControll.currentPage)
     }
 }

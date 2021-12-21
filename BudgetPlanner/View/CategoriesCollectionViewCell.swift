@@ -19,7 +19,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         
         imageOfCategories.translatesAutoresizingMaskIntoConstraints = false
         imageOfCategories.contentMode = .scaleAspectFit
-        imageOfCategories.image = UIImage(named: categorie.nameOfImage)
+        imageOfCategories.image = UIImage(named: categorie.nameOfImage ?? "")
         
         nameOfCategoris.translatesAutoresizingMaskIntoConstraints = false
         nameOfCategoris.textAlignment = .center

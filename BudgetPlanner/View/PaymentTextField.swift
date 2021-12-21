@@ -97,7 +97,7 @@ class PaymentTextField: UIView {
         
         
         
-        paymentView.image = UIImage(named: categorieOfPayment!.nameOfImage)
+        paymentView.image = UIImage(named: categorieOfPayment!.nameOfImage ?? "")
         
 //        paymentView.setContentHuggingPriority(.defaultLow + 2, for: .horizontal)
         
