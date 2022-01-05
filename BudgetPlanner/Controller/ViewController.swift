@@ -8,10 +8,13 @@
 import UIKit
 import SideMenu
 
+
 class ViewController: UIViewController {
+    //private var CheckArr.shared.array = [Int]()
     var menu: SideMenuNavigationController?
     var mainUser = OneAndOnlyUser.shared.user
-    
+    var con = 0.0
+        
     private lazy var pageControll: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.backgroundColor = .clear
@@ -21,12 +24,22 @@ class ViewController: UIViewController {
         return pageControl
     }()
     
+    let tableView = UITableView()
+//    let paymentTableView: UITableView = {
+//        let tableView = UITableView()
+//        tableView.register(PaymentTableViewCell.self, forCellReuseIdentifier: "cell")
+//        tableView.translatesAutoresizingMaskIntoConstraints = false
+//        return tableView
+//    }()
+    
     private var addButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(named: "plus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    //let backView = UIView()
     
     private var profileButton = UIButton()
     
@@ -35,15 +48,40 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        self.view.addSubview(tableView)
+        
+        self.navigationController?.navigationItem.largeTitleDisplayMode = .never
+        //self.view.addSubview(backView)
+        //backView.frame = CGRect(x: 20, y: view.frame.height * 0.55, width: view.frame.width - 40, height: 200)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 100
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        //tableView.alwaysBounceVertical = false
+        //tableView.bounces = false
+        scrollViewOfPage.bounces = false
+
+        //tableView.translatesAutoresizingMaskIntoConstraints = false
+        //self.backView.addSubview(tableView)
+
+        //tableView.frame = CGRect(x: 20, y: view.frame.height * 0.58, width: view.frame.width - 40, height: 200)
+        tableView.register(PaymentTableViewCell.self, forCellReuseIdentifier: "cell")
+//        paymentTableView.delegate = self
+//        paymentTableView.dataSource = self
         //menu = SideMenuNavigationController(rootViewController: self)
         self.title = "Wallet"
         let customView = ProfilePhotoView(imageButton: profileButton)
+        
+        let navItem2 = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshView))
         let navItem1 = UIBarButtonItem(customView: customView)
         
         let leftButton = UIBarButtonItem(title: "Hello, \(mainUser.name) \(mainUser.surname)", image: nil, primaryAction: nil, menu: nil)
         leftButton.isEnabled = false
         self.navigationItem.leftBarButtonItem = leftButton
-        self.navigationItem.rightBarButtonItem = navItem1
+        self.navigationItem.rightBarButtonItems = [navItem1,navItem2]
         
         self.view.backgroundColor = .white
         
@@ -67,13 +105,21 @@ class ViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            addButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height * 0.8),
+            addButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height * 0.87),
             addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addButton.widthAnchor.constraint(equalToConstant: 50),
             addButton.heightAnchor.constraint(equalToConstant: 50)
             
         ])
         
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: pageControll.bottomAnchor, constant: 20),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            tableView.bottomAnchor.constraint(equalTo: addButton.topAnchor, constant: -10)
+            //paymentTableView.heightAnchor.constraint(equalToConstant: 50)
+
+        ])
         
         
         scrollViewOfPage.backgroundColor = .clear
@@ -85,13 +131,31 @@ class ViewController: UIViewController {
         
         print(scrollViewOfPage.subviews.count)
         profileButton.addTarget(self, action: #selector(profilePhotoAction), for: .touchUpInside)
+        
+        
+    }
+
+    @objc
+    func refreshView() {
+        //self.mainUser = OneAndOnlyUser.shared.user
+        //self.view.setNeedsLayout()
+        self.tableView.reloadData()
+        guard let methodsOfPayment = mainUser.methodsOfPayment else {return}
+        UIView.animate(withDuration: 3.0, delay: 0.0, options: .curveLinear) {
+            self.pageControll.numberOfPages = self.mainUser.methodsOfPayment!.count
+            self.configureScrollView(methodsOfPayment)
+           // self.view.layoutIfNeeded()
+        }
+
+        
+
     }
     
     @objc
     func profilePhotoAction() {
         
         menu = SideMenuNavigationController(rootViewController: SettingsViewController())
-        menu?.menuWidth = self.view.frame.width * 0.8
+        menu?.menuWidth = self.view.frame.width
         menu?.blurEffectStyle = .systemThickMaterialLight
         menu?.presentDuration = 1.0
         menu?.dismissDuration = 1.0
@@ -104,7 +168,10 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.viewDidLayoutSubviews()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        tableView.reloadData()
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
+//        self.viewDidLayoutSubviews()
     }
     
     override func viewDidLayoutSubviews() {
@@ -136,6 +203,7 @@ class ViewController: UIViewController {
     func changeValueOfScrollPage(_ sender: UIPageControl) {
         let current = sender.currentPage
         //print(current)
+        //self.tableView.reloadData()
         scrollViewOfPage.setContentOffset(CGPoint(x: CGFloat(current) * self.view.frame.size.width, y: 0), animated: true)
     }
     
@@ -161,13 +229,96 @@ class ViewController: UIViewController {
             ])
         }
     }
-    
 }
 
 extension ViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+   
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//
+//        pageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.width)))
+//        print("reload")
+//        tableView.reloadData()
+//        CheckArr.shared.array.append(pageControll.currentPage)
+//        //print(self.cheackArr.count)
+//    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
-        pageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.width)))
-        //print(pageControll.currentPage)
+        
+//        UIView.animate(withDuration: 3.0, delay: 0.0, options: .curveLinear) {
+//            self.pageControll.numberOfPages = self.mainUser.methodsOfPayment!.count
+//            self.configureScrollView(methodsOfPayment)
+//           // self.view.layoutIfNeeded()
+//        }
+        
+        if scrollView == self.scrollViewOfPage {
+//            if scrollView.contentOffset.x > 0.0 {
+//                print(con)
+                pageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.width)))
+                //print(pageControll.currentPage)
+                //print("reload")
+                CheckArr.shared.array.append(pageControll.currentPage)
+                print(CheckArr.shared.array.last!)
+                self.tableView.reloadData()
+//            } else if scrollView.contentOffset.x == 0.0 && pageControll.currentPage == 1 {
+//
+//                pageControll.currentPage = 0
+//                CheckArr.shared.array.append(pageControll.currentPage)
+//                print(CheckArr.shared.array.last!)
+//                self.tableView.reloadData()
+//
+//
+//            }
+        }
+        
+        
+    }
+}
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let index = CheckArr.shared.array.last {
+            if OneAndOnlyUser.shared.user.methodsOfPayment![index].payments!.count > 0 {
+                return OneAndOnlyUser.shared.user.methodsOfPayment![index].payments!.count
+            } else {
+                return 0
+            }
+        }
+        return 1
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        //let deleteItem = OneAndOnlyUser.shared.user.methodsOfPayment![CheckArr.shared.array.last!]
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let indexOfMethod = CheckArr.shared.array.last {
+            if OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.count > 0 {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PaymentTableViewCell {
+                        cell.setUp(OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![indexPath.row])
+                        return cell
+                    }
+            } else {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PaymentTableViewCell {
+                    return cell
+                }
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
+        print("123")
     }
 }

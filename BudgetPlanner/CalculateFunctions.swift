@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import UIKit
+
+
 
 final class CalculateFunctions {
         
@@ -21,6 +24,6 @@ final class CalculateFunctions {
     static func multiply(_ firstValue: Double, _ secondValue: Double) -> Double {
         return firstValue * secondValue
     }
+    
 }
 
-//let a = CalculateFunctions.shared.

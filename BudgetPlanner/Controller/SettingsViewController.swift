@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SettingsViewController: UIViewController {
     
@@ -33,7 +34,7 @@ class SettingsViewController: UIViewController {
     
     lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = OneAndOnlyUser.shared.user.name + " " + OneAndOnlyUser.shared.user.surname ?? ""
+        nameLabel.text = OneAndOnlyUser.shared.user.name + " " + OneAndOnlyUser.shared.user.surname
         nameLabel.textAlignment = .center
         nameLabel.textColor = .white
         nameLabel.backgroundColor = .clear
@@ -59,6 +60,8 @@ class SettingsViewController: UIViewController {
             mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        
+        
         configureUpperView()
         
 //        mainView.translatesAutoresizingMaskIntoConstraints = false
@@ -149,6 +152,50 @@ class SettingsViewController: UIViewController {
         bottomView.backgroundColor = .systemGray6
         bottomView.clipsToBounds = true
         bottomView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let addCardMethodOfPaymentButton = UIButton()
+        addCardMethodOfPaymentButton.layer.cornerRadius = 5
+        addCardMethodOfPaymentButton.setTitle("Add new method", for: .normal)
+        addCardMethodOfPaymentButton.backgroundColor = .gray
+        addCardMethodOfPaymentButton.addTarget(self, action: #selector(addCardMethodOfPayment), for: .touchUpInside)
+        addCardMethodOfPaymentButton.translatesAutoresizingMaskIntoConstraints = false
+        
+//        let addCashMethodOfPaymentButton = UIButton()
+//        addCashMethodOfPaymentButton.layer.cornerRadius = 5
+//        addCashMethodOfPaymentButton.setTitle("Add cash method", for: .normal)
+//        addCashMethodOfPaymentButton.backgroundColor = .gray
+//        addCashMethodOfPaymentButton.addTarget(self, action: #selector(addCashMethodOfPayment), for: .touchUpInside)
+//        addCashMethodOfPaymentButton.translatesAutoresizingMaskIntoConstraints = false
+//
+        let deleteMethodOfPaymentButton = UIButton()
+        deleteMethodOfPaymentButton.layer.cornerRadius = 5
+        deleteMethodOfPaymentButton.setTitle("Delete method", for: .normal)
+        deleteMethodOfPaymentButton.backgroundColor = .gray
+        deleteMethodOfPaymentButton.addTarget(self, action: #selector(addCardMethodOfPayment), for: .touchUpInside)
+        deleteMethodOfPaymentButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let settingsButton = UIButton()
+        settingsButton.layer.cornerRadius = 5
+        settingsButton.setTitle("Settings", for: .normal)
+        settingsButton.backgroundColor = .gray
+        settingsButton.addTarget(self, action: #selector(addCardMethodOfPayment), for: .touchUpInside)
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let logOutButton = UIButton()
+        logOutButton.setTitle("Log Out", for: .normal)
+        logOutButton.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
+        logOutButton.backgroundColor = .clear
+        logOutButton.setTitleColor(.red, for: .normal)
+        logOutButton.addTarget(self, action: #selector(logOut), for: .touchUpInside)
+        logOutButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        bottomView.addSubview(addCardMethodOfPaymentButton)
+       // bottomView.addSubview(addCashMethodOfPaymentButton)
+        bottomView.addSubview(deleteMethodOfPaymentButton)
+        bottomView.addSubview(settingsButton)
+        bottomView.addSubview(logOutButton)
+
+
 
         mainView.addSubview(upperView)
         mainView.addSubview(bottomView)
@@ -165,7 +212,7 @@ class SettingsViewController: UIViewController {
         
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = OneAndOnlyUser.shared.user.name + " " + OneAndOnlyUser.shared.user.surname ?? ""
+        nameLabel.text = OneAndOnlyUser.shared.user.name + " " + OneAndOnlyUser.shared.user.surname
         nameLabel.textAlignment = .center
         nameLabel.textColor = .white
         nameLabel.backgroundColor = .clear
@@ -185,11 +232,48 @@ class SettingsViewController: UIViewController {
             upperView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -view.frame.height / 1.3)
         ])
         
+        
+        
         NSLayoutConstraint.activate([
             bottomView.topAnchor.constraint(equalTo: upperView.bottomAnchor),
             bottomView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            addCardMethodOfPaymentButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 50),
+            addCardMethodOfPaymentButton.heightAnchor.constraint(equalToConstant: 45.0),
+            addCardMethodOfPaymentButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 70),
+            addCardMethodOfPaymentButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor,constant: -70)
+        ])
+        
+//        NSLayoutConstraint.activate([
+//            addCashMethodOfPaymentButton.topAnchor.constraint(equalTo: addCardMethodOfPaymentButton.bottomAnchor, constant: 10.0),
+//            addCashMethodOfPaymentButton.heightAnchor.constraint(equalToConstant: 45.0),
+//            addCashMethodOfPaymentButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 70.0),
+//            addCashMethodOfPaymentButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor,constant: -70.0)
+//        ])
+        
+        NSLayoutConstraint.activate([
+            deleteMethodOfPaymentButton.topAnchor.constraint(equalTo: addCardMethodOfPaymentButton.bottomAnchor, constant: 10.0),
+            deleteMethodOfPaymentButton.heightAnchor.constraint(equalToConstant: 45.0),
+            deleteMethodOfPaymentButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 70.0),
+            deleteMethodOfPaymentButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor,constant: -70.0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            settingsButton.topAnchor.constraint(equalTo: deleteMethodOfPaymentButton.bottomAnchor, constant: 10.0),
+            settingsButton.heightAnchor.constraint(equalToConstant: 45.0),
+            settingsButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 70.0),
+            settingsButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor,constant: -70.0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            logOutButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -100.0),
+            logOutButton.heightAnchor.constraint(equalToConstant: 45.0),
+            logOutButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 70.0),
+            logOutButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor,constant: -70.0)
         ])
         
         NSLayoutConstraint.activate([
@@ -213,6 +297,89 @@ class SettingsViewController: UIViewController {
         ])
     }
     
+    @objc
+    func addCardMethodOfPayment() {
+        let vc = NewMethodViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+//        vc.modalPresentationStyle = .fullScreen
+//        present(vc, animated: true, completion: nil)
+        //self.navigationController?.pushViewController(vc, animated: true)
+        //        let alert = UIAlertController(title: "Adding new card method of payment\n", message: "Fill in the fields below:", preferredStyle: .alert)
+//        alert.addTextField { tf in
+//            tf.placeholder = "Name of method"
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//
+//        let okAction = UIAlertAction(title: "Add", style: .default) { _ in
+//            guard let nameOfMethod = alert.textFields![0].text else {return}
+//            let newMethod = PaymentMethod(nameOfImage: "card", nameOfMethod: "\(nameOfMethod)", payments: [])
+//            OneAndOnlyUser.shared.user.methodsOfPayment?.append(newMethod)
+//        }
+//
+//        alert.addAction(cancelAction)
+//        alert.addAction(okAction)
+//        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    @objc
+    func addCashMethodOfPayment() {
+        let alert = UIAlertController(title: "Adding new cash method of payment\n", message: "Fill in the fields below:", preferredStyle: .alert)
+        alert.addTextField { tf in
+            tf.placeholder = "Name of method"
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "Add", style: .default) { _ in
+            guard let nameOfMethod = alert.textFields![0].text else {return}
+            let newMethod = PaymentMethod(nameOfImage: "cash", nameOfMethod: "\(nameOfMethod)", payments: [])
+            OneAndOnlyUser.shared.user.methodsOfPayment?.append(newMethod)
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+//    @objc
+//    func deleteMethod() {
+//        let alert = UIAlertController(title: "Delete method\n", message: "Fill in the fields below:", preferredStyle: .alert)
+//        alert.addTextField { tf in
+//            tf.placeholder = "Name of method"
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        let okAction = UIAlertAction(title: "Delete", style: .default) { _ in
+//            guard let methods = OneAndOnlyUser.shared.user.methodsOfPayment else {return}
+//
+//            guard let nameOfMethod = alert.textFields![0].text else {return}
+//            for value in methods {
+//                if value.nameOfMethod == nameOfMethod {
+//                    OneAndOnlyUser.shared.user.methodsOfPayment.remove
+//                }
+//            }
+//            OneAndOnlyUser.shared.user.methodsOfPayment?.append(newMethod)
+//        }
+//
+//        alert.addAction(cancelAction)
+//        alert.addAction(okAction)
+//        present(alert, animated: true, completion: nil)
+//    }
+    
+    @objc
+    func logOut() {
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+            let vc = LogInViewController()
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true, completion: nil)
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
+    }
     
     /*
      // MARK: - Navigation

@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+class CheckArr {
+    static var shared = CheckArr()
+    var array:[Int] = [0]
+}

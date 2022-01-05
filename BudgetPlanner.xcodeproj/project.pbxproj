@@ -15,18 +15,30 @@
 		84502C37270E1F54003C8A97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84502C35270E1F54003C8A97 /* LaunchScreen.storyboard */; };
 		84502C3F270E3AD0003C8A97 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84502C3E270E3AD0003C8A97 /* CardView.swift */; };
 		84502C41270EFEE1003C8A97 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84502C40270EFEE1003C8A97 /* PaymentMethod.swift */; };
+		8466F2572742E8A300E120B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8466F2562742E8A300E120B2 /* SettingsViewController.swift */; };
 		846AE73B27304E44009C10A5 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE73A27304E44009C10A5 /* Payment.swift */; };
 		846F93602714CD7500242AC5 /* CategorieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F935F2714CD7500242AC5 /* CategorieViewController.swift */; };
 		846F93622715BE5600242AC5 /* PaymentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F93612715BE5500242AC5 /* PaymentTextField.swift */; };
+		84856AEA2785BF1400A87D82 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84856AE92785BF1400A87D82 /* StatisticViewController.swift */; };
+		8494ACE5276B7506008EA90B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494ACE4276B7506008EA90B /* RegistrationViewController.swift */; };
+		8494ACE7276B7584008EA90B /* TextFieldViewRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494ACE6276B7584008EA90B /* TextFieldViewRegistration.swift */; };
+		8494ACE9276BD0D6008EA90B /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494ACE8276BD0D6008EA90B /* LogInViewController.swift */; };
+		8494ACEB276E2520008EA90B /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494ACEA276E2520008EA90B /* RealmModel.swift */; };
+		84A881012773602600F42874 /* CheckArr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A881002773602600F42874 /* CheckArr.swift */; };
+		84A881032782FEB700F42874 /* NewMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A881022782FEB600F42874 /* NewMethodViewController.swift */; };
+		84C2669627720D210079E469 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84C2669527720D200079E469 /* GoogleService-Info.plist */; };
+		84C2669827732BE80079E469 /* PaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2669727732BE70079E469 /* PaymentTableViewCell.swift */; };
 		84C289BD2711E07000781902 /* ProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C289BC2711E06F00781902 /* ProfilePhotoView.swift */; };
 		84C289BF2711F01400781902 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C289BE2711F01400781902 /* CategoriesCollectionViewCell.swift */; };
 		84C289C12711F5A300781902 /* Categorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C289C02711F5A300781902 /* Categorie.swift */; };
 		84C289C32711F68800781902 /* CategoriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C289C22711F68800781902 /* CategoriesCollectionViewController.swift */; };
 		84C289C5271227E700781902 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C289C4271227E700781902 /* User.swift */; };
 		84EA886C272EBCD900E5A080 /* CalculateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA886B272EBCD900E5A080 /* CalculateFunctions.swift */; };
+		B8052496C5D3804FD65C1148 /* Pods_BudgetPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B163974B66BBCE25B26DC2BA /* Pods_BudgetPlanner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1EC66195A5CE2819D2F2875A /* Pods-BudgetPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetPlanner.debug.xcconfig"; path = "Target Support Files/Pods-BudgetPlanner/Pods-BudgetPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 		84502C27270E1F4E003C8A97 /* BudgetPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84502C2A270E1F4E003C8A97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84502C2C270E1F4E003C8A97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,15 +49,27 @@
 		84502C38270E1F54003C8A97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84502C3E270E3AD0003C8A97 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		84502C40270EFEE1003C8A97 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
+		8466F2562742E8A300E120B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		846AE73A27304E44009C10A5 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		846F935F2714CD7500242AC5 /* CategorieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorieViewController.swift; sourceTree = "<group>"; };
 		846F93612715BE5500242AC5 /* PaymentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTextField.swift; sourceTree = "<group>"; };
+		84856AE92785BF1400A87D82 /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
+		8494ACE4276B7506008EA90B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		8494ACE6276B7584008EA90B /* TextFieldViewRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldViewRegistration.swift; sourceTree = "<group>"; };
+		8494ACE8276BD0D6008EA90B /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		8494ACEA276E2520008EA90B /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		84A881002773602600F42874 /* CheckArr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckArr.swift; sourceTree = "<group>"; };
+		84A881022782FEB600F42874 /* NewMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMethodViewController.swift; sourceTree = "<group>"; };
+		84C2669527720D200079E469 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84C2669727732BE70079E469 /* PaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTableViewCell.swift; sourceTree = "<group>"; };
 		84C289BC2711E06F00781902 /* ProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoView.swift; sourceTree = "<group>"; };
 		84C289BE2711F01400781902 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		84C289C02711F5A300781902 /* Categorie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categorie.swift; sourceTree = "<group>"; };
 		84C289C22711F68800781902 /* CategoriesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewController.swift; sourceTree = "<group>"; };
 		84C289C4271227E700781902 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84EA886B272EBCD900E5A080 /* CalculateFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateFunctions.swift; sourceTree = "<group>"; };
+		981533A2C852524949B0DEFA /* Pods-BudgetPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetPlanner.release.xcconfig"; path = "Target Support Files/Pods-BudgetPlanner/Pods-BudgetPlanner.release.xcconfig"; sourceTree = "<group>"; };
+		B163974B66BBCE25B26DC2BA /* Pods_BudgetPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BudgetPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,17 +77,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8052496C5D3804FD65C1148 /* Pods_BudgetPlanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C1D271A564BA3670B4A5656 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1EC66195A5CE2819D2F2875A /* Pods-BudgetPlanner.debug.xcconfig */,
+				981533A2C852524949B0DEFA /* Pods-BudgetPlanner.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		84502C1E270E1F4E003C8A97 = {
 			isa = PBXGroup;
 			children = (
+				84C2669527720D200079E469 /* GoogleService-Info.plist */,
 				84502C29270E1F4E003C8A97 /* BudgetPlanner */,
 				84502C28270E1F4E003C8A97 /* Products */,
+				5C1D271A564BA3670B4A5656 /* Pods */,
+				BE6A34AB08BDFD5A6CD6919A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,24 +117,65 @@
 			children = (
 				84502C2A270E1F4E003C8A97 /* AppDelegate.swift */,
 				84502C2C270E1F4E003C8A97 /* SceneDelegate.swift */,
-				84502C2E270E1F4E003C8A97 /* ViewController.swift */,
-				846F935F2714CD7500242AC5 /* CategorieViewController.swift */,
 				84EA886B272EBCD900E5A080 /* CalculateFunctions.swift */,
-				846F93612715BE5500242AC5 /* PaymentTextField.swift */,
-				84C289BE2711F01400781902 /* CategoriesCollectionViewCell.swift */,
-				84C289C22711F68800781902 /* CategoriesCollectionViewController.swift */,
-				84C289C02711F5A300781902 /* Categorie.swift */,
-				846AE73A27304E44009C10A5 /* Payment.swift */,
-				84C289C4271227E700781902 /* User.swift */,
-				84C289BC2711E06F00781902 /* ProfilePhotoView.swift */,
-				84502C3E270E3AD0003C8A97 /* CardView.swift */,
-				84502C40270EFEE1003C8A97 /* PaymentMethod.swift */,
+				84C266922771F6990079E469 /* Model */,
+				84C266932771F7C10079E469 /* View */,
+				84C266942771F7C80079E469 /* Controller */,
 				84502C30270E1F4E003C8A97 /* Main.storyboard */,
 				84502C33270E1F54003C8A97 /* Assets.xcassets */,
 				84502C35270E1F54003C8A97 /* LaunchScreen.storyboard */,
 				84502C38270E1F54003C8A97 /* Info.plist */,
 			);
 			path = BudgetPlanner;
+			sourceTree = "<group>";
+		};
+		84C266922771F6990079E469 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8494ACEA276E2520008EA90B /* RealmModel.swift */,
+				84C289C02711F5A300781902 /* Categorie.swift */,
+				846AE73A27304E44009C10A5 /* Payment.swift */,
+				84502C40270EFEE1003C8A97 /* PaymentMethod.swift */,
+				84C289C4271227E700781902 /* User.swift */,
+				84A881002773602600F42874 /* CheckArr.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84C266932771F7C10079E469 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				846F93612715BE5500242AC5 /* PaymentTextField.swift */,
+				84C289BC2711E06F00781902 /* ProfilePhotoView.swift */,
+				84502C3E270E3AD0003C8A97 /* CardView.swift */,
+				84C289BE2711F01400781902 /* CategoriesCollectionViewCell.swift */,
+				84C2669727732BE70079E469 /* PaymentTableViewCell.swift */,
+				8494ACE6276B7584008EA90B /* TextFieldViewRegistration.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84C266942771F7C80079E469 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				84502C2E270E1F4E003C8A97 /* ViewController.swift */,
+				84856AE92785BF1400A87D82 /* StatisticViewController.swift */,
+				8494ACE4276B7506008EA90B /* RegistrationViewController.swift */,
+				84A881022782FEB600F42874 /* NewMethodViewController.swift */,
+				8494ACE8276BD0D6008EA90B /* LogInViewController.swift */,
+				8466F2562742E8A300E120B2 /* SettingsViewController.swift */,
+				84C289C22711F68800781902 /* CategoriesCollectionViewController.swift */,
+				846F935F2714CD7500242AC5 /* CategorieViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BE6A34AB08BDFD5A6CD6919A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B163974B66BBCE25B26DC2BA /* Pods_BudgetPlanner.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,9 +185,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84502C3B270E1F54003C8A97 /* Build configuration list for PBXNativeTarget "BudgetPlanner" */;
 			buildPhases = (
+				B7879AB2DED5F0A2CB8F2A5F /* [CP] Check Pods Manifest.lock */,
 				84502C23270E1F4E003C8A97 /* Sources */,
 				84502C24270E1F4E003C8A97 /* Frameworks */,
 				84502C25270E1F4E003C8A97 /* Resources */,
+				55B71FA45A2F7DA0CD699F17 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,11 +240,54 @@
 			files = (
 				84502C37270E1F54003C8A97 /* LaunchScreen.storyboard in Resources */,
 				84502C34270E1F54003C8A97 /* Assets.xcassets in Resources */,
+				84C2669627720D210079E469 /* GoogleService-Info.plist in Resources */,
 				84502C32270E1F4E003C8A97 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		55B71FA45A2F7DA0CD699F17 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BudgetPlanner/Pods-BudgetPlanner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BudgetPlanner/Pods-BudgetPlanner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BudgetPlanner/Pods-BudgetPlanner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7879AB2DED5F0A2CB8F2A5F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BudgetPlanner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		84502C23270E1F4E003C8A97 /* Sources */ = {
@@ -173,15 +296,24 @@
 			files = (
 				84502C2F270E1F4E003C8A97 /* ViewController.swift in Sources */,
 				84C289C32711F68800781902 /* CategoriesCollectionViewController.swift in Sources */,
+				8494ACEB276E2520008EA90B /* RealmModel.swift in Sources */,
+				8494ACE9276BD0D6008EA90B /* LogInViewController.swift in Sources */,
 				846AE73B27304E44009C10A5 /* Payment.swift in Sources */,
 				846F93622715BE5600242AC5 /* PaymentTextField.swift in Sources */,
+				84856AEA2785BF1400A87D82 /* StatisticViewController.swift in Sources */,
+				84A881012773602600F42874 /* CheckArr.swift in Sources */,
 				84C289BF2711F01400781902 /* CategoriesCollectionViewCell.swift in Sources */,
 				84EA886C272EBCD900E5A080 /* CalculateFunctions.swift in Sources */,
 				84502C41270EFEE1003C8A97 /* PaymentMethod.swift in Sources */,
 				84502C2B270E1F4E003C8A97 /* AppDelegate.swift in Sources */,
+				84C2669827732BE80079E469 /* PaymentTableViewCell.swift in Sources */,
+				8466F2572742E8A300E120B2 /* SettingsViewController.swift in Sources */,
 				84C289BD2711E07000781902 /* ProfilePhotoView.swift in Sources */,
+				8494ACE5276B7506008EA90B /* RegistrationViewController.swift in Sources */,
 				84C289C12711F5A300781902 /* Categorie.swift in Sources */,
+				84A881032782FEB700F42874 /* NewMethodViewController.swift in Sources */,
 				846F93602714CD7500242AC5 /* CategorieViewController.swift in Sources */,
+				8494ACE7276B7584008EA90B /* TextFieldViewRegistration.swift in Sources */,
 				84502C3F270E3AD0003C8A97 /* CardView.swift in Sources */,
 				84C289C5271227E700781902 /* User.swift in Sources */,
 				84502C2D270E1F4E003C8A97 /* SceneDelegate.swift in Sources */,
@@ -328,6 +460,7 @@
 		};
 		84502C3C270E1F54003C8A97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EC66195A5CE2819D2F2875A /* Pods-BudgetPlanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -356,6 +489,7 @@
 		};
 		84502C3D270E1F54003C8A97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 981533A2C852524949B0DEFA /* Pods-BudgetPlanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

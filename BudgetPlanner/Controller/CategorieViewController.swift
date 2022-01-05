@@ -25,6 +25,15 @@ class CategorieViewController: UIViewController {
         return label
     }()
     
+    let keyNoteLabel = TextFieldView()
+//    let keyNoteLabel: UITextField = {
+//        let textField = UITextField()
+//        textField.placeholder = "Write some keynote"
+//        textField.translatesAutoresizingMaskIntoConstraints = false
+//
+//        return textField
+//    }()
+    
     private var numInLabel: Double = 0 {
         didSet {
             if tf.categorieTextField.text == "0" {
@@ -87,10 +96,18 @@ class CategorieViewController: UIViewController {
         super.viewDidLoad()
 
         
-        view.addSubview(dateLabel)
+        self.view.addSubview(dateLabel)
+        
+        
+        self.view.addSubview(keyNoteLabel)
+        self.keyNoteLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.keyNoteLabel.imageName = "pen4"
+        self.keyNoteLabel.placeHolder = "Write some keynote..."
+        
+        
         self.view.addSubview(tf)
         self.view.addSubview(dotButton)
-        OneAndOnlyUser.shared.user.methodsOfPayment!.append(PaymentMethod(nameOfImage: "card", nameOfMethod: "carrrr"))
+        //OneAndOnlyUser.shared.user.methodsOfPayment!.append(PaymentMethod(nameOfImage: "card", nameOfMethod: "carrrr"))
         
         let stackView1 = UIStackView(arrangedSubviews: [numButtons[0],numButtons[1],numButtons[2], signButtons[0]])
         let stackView2 = UIStackView(arrangedSubviews: [numButtons[3],numButtons[4],numButtons[5], signButtons[1]])
@@ -176,8 +193,13 @@ class CategorieViewController: UIViewController {
     
     @objc
     func addPayment() {
-        self.categorie.payments.append(Payment(sum: Double(self.tf.categorieTextField.text!) ?? 0, date: Date(), keyNote: "", categorieOfPayment: self.categorie))
-        print(self.categorie.payments)
+        if let check = CheckArr.shared.array.last {
+            self.categorie.payments.append(Payment(sum: Double(self.tf.categorieTextField.text!) ?? 0, date: Date(), keyNote: "", categorieOfPayment: self.categorie))
+            OneAndOnlyUser.shared.user.methodsOfPayment![check].payments?.append(Payment(sum: Double(self.tf.categorieTextField.text!) ?? 0, date: Date(), keyNote: "\(self.keyNoteLabel.inputTextField.text ?? "")", categorieOfPayment: self.categorie))
+            print(self.categorie.payments)
+            print(CheckArr.shared.array.last!)
+        }
+        
     }
     
     @objc
@@ -262,9 +284,17 @@ extension CategorieViewController {
             tf.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 40),
             tf.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             tf.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            tf.heightAnchor.constraint(equalToConstant: 90.0)
-        
+            tf.heightAnchor.constraint(equalToConstant: 50.0)
         ])
+        
+        NSLayoutConstraint.activate([
+            keyNoteLabel.topAnchor.constraint(equalTo: tf.bottomAnchor, constant: 15),
+            keyNoteLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            keyNoteLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            keyNoteLabel.heightAnchor.constraint(equalToConstant: 50.0)
+        ])
+        
+        
         
     }
 }

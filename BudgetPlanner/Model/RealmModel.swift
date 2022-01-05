@@ -12,7 +12,8 @@ class RealmModel {
     
     static var shared = RealmModel()
     
-    var realm = try! Realm(configuration: Realm.Configuration.defaultConfiguration, queue: DispatchQueue.main)
+    //var realm = try! Realm(configuration: Realm.Configuration.defaultConfiguration)
+    //, queue: DispatchQueue.main
 }
 
 

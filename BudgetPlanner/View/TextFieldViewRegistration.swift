@@ -33,7 +33,6 @@ class TextFieldView: UIView {
         addSubview(backgroundView)
         backgroundView.backgroundColor = .white
 
-        
         NSLayoutConstraint.activate([
             backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),

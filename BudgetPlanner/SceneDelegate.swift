@@ -6,6 +6,7 @@
 //
 
 import UIKit
+//import SideMenu
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,11 +17,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScreen = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScreen)
 
-        let firstVC = ViewController()
+        let firstVC = LogInViewController()
         
        
 
-        
+//        let firstNavController = SideMenuNavigationController(rootViewController: firstVC)
         let firstNavController = UINavigationController(rootViewController: firstVC)
        
    

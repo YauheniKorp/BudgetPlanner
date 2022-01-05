@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseAuth
 
 
 class RegistrationViewController: UIViewController {
@@ -67,6 +68,7 @@ class RegistrationViewController: UIViewController {
         emailOrPhoneTextField.placeHolder = "Email"
         emailOrPhoneTextField.inputTextField.autocorrectionType = .no
         emailOrPhoneTextField.inputTextField.keyboardType = .emailAddress
+        emailOrPhoneTextField.inputTextField.autocapitalizationType = .none
         
         passwordTextField.imageName = "Lock"
         passwordTextField.placeHolder = "Password"
@@ -96,21 +98,32 @@ class RegistrationViewController: UIViewController {
     
     @objc
     func registerUser() {
-        let vc = ViewController()
-
-        self.navigationController?.pushViewController(vc, animated: true)
-//        if fullNameTextField.inputTextField.text != "" && surnameTextField.inputTextField.text != "" && emailOrPhoneTextField.inputTextField.text != "" && confirmPasswordTextField.inputTextField.text != "" && passwordTextField.inputTextField.text != "" && passwordTextField.inputTextField.text == confirmPasswordTextField.inputTextField.text {
+//        let vc = ViewController()
 //
-//            let newUser = User(name: fullNameTextField.inputTextField.text ?? "", surname: surnameTextField.inputTextField.text ?? "", password: passwordTextField.inputTextField.text ?? "", email: emailOrPhoneTextField.inputTextField.text ?? "")
-//            
-//            Users.shared.users.append(newUser)
-//            try! RealmModel.shared.realm.write {
-//                var us = RealmModel.shared.realm.create(User.self)
-//                us = newUser
-//                print(us)
-//            }
-//            self.checkLabel.text = "Registration was successful!"
-//        }
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+        if fullNameTextField.inputTextField.text != "" && surnameTextField.inputTextField.text != "" && emailOrPhoneTextField.inputTextField.text != "" && confirmPasswordTextField.inputTextField.text != "" && passwordTextField.inputTextField.text != "" && passwordTextField.inputTextField.text == confirmPasswordTextField.inputTextField.text {
+
+            let newUser = User(name: fullNameTextField.inputTextField.text ?? "", surname: surnameTextField.inputTextField.text ?? "", password: passwordTextField.inputTextField.text ?? "", email: emailOrPhoneTextField.inputTextField.text ?? "")
+            print(newUser.name)
+            print(newUser.password)
+
+            
+            FirebaseAuth.Auth.auth().createUser(withEmail: newUser.email, password: newUser.password) { auth, error in
+                guard error == nil else {
+                    self.checkLabel.text = "Smth was wrong..."
+                    return
+                }
+                Users.shared.users.append(newUser)
+//                try! RealmModel.shared.realm.write {
+//                    var us = RealmModel.shared.realm.create(User.self)
+//                    us.email = newUser.email
+//                    //us = newUser
+//                    print(us.email)
+//                }
+                self.checkLabel.text = "Registration was successful!"
+            }
+        }
     }
 }
 

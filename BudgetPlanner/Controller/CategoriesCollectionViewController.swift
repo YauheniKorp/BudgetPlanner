@@ -80,6 +80,8 @@ class CategoriesCollectionViewController: UICollectionViewController {
         return true
     }
     
+    
+    
     override func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) {
             cell.layer.borderWidth = 0
