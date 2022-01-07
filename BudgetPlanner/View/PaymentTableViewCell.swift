@@ -26,15 +26,17 @@ class PaymentTableViewCell: UITableViewCell {
         //clipsToBounds = false
         sumLabel.text = "\(payment.sum)p"
         sumLabel.frame = CGRect(x: 300, y: 5, width: 150, height: 40)
-        sumLabel.font = UIFont.systemFont(ofSize: 12)
+        sumLabel.font = UIFont.systemFont(ofSize: 15)
         addSubview(sumLabel)
         
         keyNoteLabel.text = payment.keyNote
+        keyNoteLabel.font = UIFont.systemFont(ofSize: 15)
+
         keyNoteLabel.frame = CGRect(x: 70, y: 50, width: 200, height: 40)
         addSubview(keyNoteLabel)
         
         nameOfCategorieLabel.text = payment.categorieOfPayment?.name
-        nameOfCategorieLabel.font = UIFont.systemFont(ofSize: 25)
+        nameOfCategorieLabel.font = UIFont.systemFont(ofSize: 20)
         nameOfCategorieLabel.frame = CGRect(x: 70, y: 5, width: 200, height: 40)
         //nameOfCategorieLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(nameOfCategorieLabel)

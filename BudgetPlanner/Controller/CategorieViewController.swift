@@ -196,6 +196,8 @@ class CategorieViewController: UIViewController {
         if let check = CheckArr.shared.array.last {
             self.categorie.payments.append(Payment(sum: Double(self.tf.categorieTextField.text!) ?? 0, date: Date(), keyNote: "", categorieOfPayment: self.categorie))
             OneAndOnlyUser.shared.user.methodsOfPayment![check].payments?.append(Payment(sum: Double(self.tf.categorieTextField.text!) ?? 0, date: Date(), keyNote: "\(self.keyNoteLabel.inputTextField.text ?? "")", categorieOfPayment: self.categorie))
+            let vc = ViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
             print(self.categorie.payments)
             print(CheckArr.shared.array.last!)
         }

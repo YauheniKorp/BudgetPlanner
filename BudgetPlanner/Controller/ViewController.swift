@@ -34,7 +34,14 @@ class ViewController: UIViewController {
     
     private var addButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "plus"), for: .normal)
+        button.setBackgroundImage(UIImage(named: "plus1"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var statisticButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(named: "stat2"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -88,6 +95,7 @@ class ViewController: UIViewController {
         self.view.addSubview(pageControll)
         self.view.addSubview(scrollViewOfPage)
         self.view.addSubview(addButton)
+        self.view.addSubview(statisticButton)
         
         scrollViewOfPage.delegate = self
         scrollViewOfPage.translatesAutoresizingMaskIntoConstraints = false
@@ -113,6 +121,14 @@ class ViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            statisticButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height * 0.87),
+            statisticButton.leadingAnchor.constraint(equalTo: addButton.trailingAnchor, constant: 50),
+            statisticButton.widthAnchor.constraint(equalToConstant: 50),
+            statisticButton.heightAnchor.constraint(equalToConstant: 50)
+            
+        ])
+        
+        NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: pageControll.bottomAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -128,6 +144,7 @@ class ViewController: UIViewController {
         configureScrollView(methodsOfPayment)
         
         addButton.addTarget(self, action: #selector(openCategoriesCollectionVC), for: .touchUpInside)
+        statisticButton.addTarget(self, action: #selector(goToStatisticViewController), for: .touchUpInside)
         
         print(scrollViewOfPage.subviews.count)
         profileButton.addTarget(self, action: #selector(profilePhotoAction), for: .touchUpInside)
@@ -135,6 +152,12 @@ class ViewController: UIViewController {
         
     }
 
+    @objc
+    func goToStatisticViewController() {
+       let vc = StatisticViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc
     func refreshView() {
         //self.mainUser = OneAndOnlyUser.shared.user

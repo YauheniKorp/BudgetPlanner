@@ -47,3 +47,25 @@ class Categories {
         Categorie(nameOfImage: "transport", name: "Transport")]
     
 }
+
+enum Categ: String {
+    case car = "Car"
+    case gift = "Gifts"
+    case food = "Food"
+    case coffe = "Coffe"
+    case clothes = "Clothes"
+    case cosmetic = "Cosmetic"
+    case entertainment = "Entertainment"
+    case fitness = "Fitness"
+    case hotel = "Hotel"
+    case house = "House"
+    case medical = "Medical"
+    case people = "People"
+    case phone = "Phone"
+    case pill = "Pill"
+    case plane = "Plane"
+    case saving = "Saving"
+    case shopping = "Shopping"
+    case taxi = "Taxi"
+    case transport = "Transport"
+}

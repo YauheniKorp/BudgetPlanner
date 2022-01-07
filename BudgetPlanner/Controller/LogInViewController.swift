@@ -75,7 +75,7 @@ class LogInViewController: UIViewController {
                 return
             }
             
-            //guard let users = Users.shared.users else {return}
+            //guard let users = Users.shared.realmUsers else {return}
             for user in Users.shared.users {
                 if user.email == email {
                     OneAndOnlyUser.shared.user = user
