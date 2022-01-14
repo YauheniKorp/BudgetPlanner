@@ -35,8 +35,14 @@ class StatisticViewController: UIViewController {
         barChart.holeRadiusPercent = 0.5
         
         var entries = [PieChartDataEntry]()
-        guard let a = CheckArr.shared.array.last else {return}
-        if (OneAndOnlyUser.shared.user.methodsOfPayment![a].payments!.count < 1) {
+        var arrOfPayments = [Payment]()
+        for value in OneAndOnlyUser.shared.user.methodsOfPayment! {
+            guard let payments = value.payments else {return}
+            for payment in payments {
+                arrOfPayments.append(payment)
+            }
+        }
+        if arrOfPayments.count < 1 {
             entries.append(PieChartDataEntry(value: 1))
             
         } else {
@@ -52,7 +58,7 @@ class StatisticViewController: UIViewController {
             }
         }
         var sum = 0.0
-        for value in OneAndOnlyUser.shared.user.methodsOfPayment![a].payments! {
+        for value in arrOfPayments {
             sum += value.sum
         }
         let text = "Итого: \(sum)p"

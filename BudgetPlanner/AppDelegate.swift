@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Users.shared.realmUsers = RealmModel.shared.realm.objects(User.self)
         //print(Users.shared.realmUsers?[0].email)
         FirebaseApp.configure()
+        
         return true
     }
 

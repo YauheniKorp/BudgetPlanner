@@ -85,7 +85,6 @@ class PaymentTextField: UIView {
         categorieTextField.backgroundColor = .systemGray6
         categorieTextField.font = UIFont.systemFont(ofSize: 32)
         categorieTextField.adjustsFontSizeToFitWidth = true
-        //categorieTextField.text?.max
         categorieTextField.textAlignment = .right
         
 //        if let categorieOfPayment = categorieOfPayment {
@@ -112,7 +111,6 @@ class PaymentTextField: UIView {
     
     init(categorieOfPayment: Categorie, deleteButton: UIButton) {
         super.init(frame: CGRect.zero)
-        //super.init()
         self.deleteButton = deleteButton
         self.categorieOfPayment = categorieOfPayment
         setView()
@@ -123,8 +121,3 @@ class PaymentTextField: UIView {
     }
     
 }
-//extension UILabel {
-//    func maxLength(_ length: Int) {
-//        if self.tex
-//    }
-//}

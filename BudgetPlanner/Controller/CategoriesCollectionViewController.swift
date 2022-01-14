@@ -51,7 +51,7 @@ class CategoriesCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = CategorieViewController(categorie: categories[indexPath.row])
         self.navigationController?.pushViewController(vc, animated: true)
-        //present(vc, animated: true, completion: nil)
+        // present(vc, animated: true, completion: nil)
         
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

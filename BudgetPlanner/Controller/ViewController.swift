@@ -82,13 +82,13 @@ class ViewController: UIViewController {
         self.title = "Wallet"
         let customView = ProfilePhotoView(imageButton: profileButton)
         
-        let navItem2 = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshView))
+//        let navItem2 = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshView))
         let navItem1 = UIBarButtonItem(customView: customView)
         
         let leftButton = UIBarButtonItem(title: "Hello, \(mainUser.name) \(mainUser.surname)", image: nil, primaryAction: nil, menu: nil)
         leftButton.isEnabled = false
         self.navigationItem.leftBarButtonItem = leftButton
-        self.navigationItem.rightBarButtonItems = [navItem1,navItem2]
+        self.navigationItem.rightBarButtonItem = navItem1
         
         self.view.backgroundColor = .white
         
@@ -146,7 +146,7 @@ class ViewController: UIViewController {
         addButton.addTarget(self, action: #selector(openCategoriesCollectionVC), for: .touchUpInside)
         statisticButton.addTarget(self, action: #selector(goToStatisticViewController), for: .touchUpInside)
         
-        print(scrollViewOfPage.subviews.count)
+        //print(scrollViewOfPage.subviews.count)
         profileButton.addTarget(self, action: #selector(profilePhotoAction), for: .touchUpInside)
         
         
@@ -186,12 +186,14 @@ class ViewController: UIViewController {
         menu?.pushStyle = .subMenu
         present(menu!, animated: true, completion: nil)
         
-        //SideMenuManager.default.ri
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        guard let page = CheckArr.shared.array.last else {return}
+        pageControll.currentPage = page
+        scrollViewOfPage.setContentOffset(CGPoint(x: CGFloat(page) * self.view.frame.size.width, y: 0), animated: true)
         tableView.reloadData()
 //        self.navigationController?.navigationBar.prefersLargeTitles = true
 //        self.viewDidLayoutSubviews()
@@ -321,7 +323,33 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        //let deleteItem = OneAndOnlyUser.shared.user.methodsOfPayment![CheckArr.shared.array.last!]
+        
+        if let indexOfMethod = CheckArr.shared.array.last {
+            let deleteItem = OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![indexPath.row]
+            print(deleteItem)
+            for indexOfDeleteItem in OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.indices {
+                if OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![indexOfDeleteItem] == deleteItem {
+//                    for categorieIndex in Categories.shared.categories.indices {
+//                        if Categories.shared.categories[categorieIndex].payments.count > 0 {
+//                            print(Categories.shared.categories[categorieIndex].payments.count)
+//                            for paymentIndex in Categories.shared.categories[categorieIndex].payments.indices {
+//                                print("\(Categories.shared.categories[categorieIndex].payments[paymentIndex])")
+//                                if Categories.shared.categories[categorieIndex].payments[paymentIndex] == deleteItem {
+//                                    print("deleted \(Categories.shared.categories[categorieIndex].payments[paymentIndex].sum)")
+//                                    Categories.shared.categories[categorieIndex].payments.remove(at: paymentIndex)
+//                                }
+//                            }
+//                        }
+//
+//                    }
+                    OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.remove(at: indexOfDeleteItem)
+                    tableView.deleteRows(at: [indexPath], with: .top)
+                    tableView.reloadData()
+                    return
+                }
+            }
+            
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -342,6 +370,25 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
-        print("123")
+       
+        if let indexOfMethod = CheckArr.shared.array.last {
+            let selectedPayment = OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![didSelectRowAt.row]
+            for payment in OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments! {
+                if payment == selectedPayment {
+                    let vc = DetailViewController(payment: payment)
+                    self.navigationController?.pushViewController(vc, animated: true)
+//                    for index in OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.indices {
+//                        if payment == OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![index] {
+//                            OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.remove(at: index)
+//                            let a = didSelectRowAt
+//
+//                            tableView.deleteRows(at: [a], with: .top)
+//                            tableView.reloadData()
+//                        }
+//                    }
+                }
+            }
+            
+        }
     }
 }

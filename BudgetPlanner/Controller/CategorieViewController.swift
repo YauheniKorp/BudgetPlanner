@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 class CategorieViewController: UIViewController {
+    
+   // var realm = try! Realm()
     
     lazy var tf = PaymentTextField(categorieOfPayment: categorie, deleteButton: deleteButton)
     let deleteButton = UIButton()
@@ -194,7 +198,9 @@ class CategorieViewController: UIViewController {
     @objc
     func addPayment() {
         if let check = CheckArr.shared.array.last {
-            self.categorie.payments.append(Payment(sum: Double(self.tf.categorieTextField.text!) ?? 0, date: Date(), keyNote: "", categorieOfPayment: self.categorie))
+            let newPayment = Payment(sum: Double(self.tf.categorieTextField.text!) ?? 0, date: Date(), keyNote: "", categorieOfPayment: self.categorie)
+            self.categorie.payments.append(newPayment)
+            
             OneAndOnlyUser.shared.user.methodsOfPayment![check].payments?.append(Payment(sum: Double(self.tf.categorieTextField.text!) ?? 0, date: Date(), keyNote: "\(self.keyNoteLabel.inputTextField.text ?? "")", categorieOfPayment: self.categorie))
             let vc = ViewController()
             self.navigationController?.pushViewController(vc, animated: true)

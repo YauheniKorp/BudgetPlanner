@@ -29,7 +29,7 @@ class NewMethodViewController: UIViewController {
         label.attributedText = attText
         label.clipsToBounds = true
         label.layer.cornerRadius = 10
-        //label.backgroundColor = .systemGray6
+        // label.backgroundColor = .systemGray6
         return label
     }()
     
