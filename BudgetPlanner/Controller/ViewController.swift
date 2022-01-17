@@ -10,10 +10,8 @@ import SideMenu
 
 
 class ViewController: UIViewController {
-    //private var CheckArr.shared.array = [Int]()
     var menu: SideMenuNavigationController?
     var mainUser = OneAndOnlyUser.shared.user
-    var con = 0.0
         
     private lazy var pageControll: UIPageControl = {
         let pageControl = UIPageControl()
@@ -25,12 +23,6 @@ class ViewController: UIViewController {
     }()
     
     let tableView = UITableView()
-//    let paymentTableView: UITableView = {
-//        let tableView = UITableView()
-//        tableView.register(PaymentTableViewCell.self, forCellReuseIdentifier: "cell")
-//        tableView.translatesAutoresizingMaskIntoConstraints = false
-//        return tableView
-//    }()
     
     private var addButton: UIButton = {
         let button = UIButton()
@@ -45,44 +37,30 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    //let backView = UIView()
-    
+        
     private var profileButton = UIButton()
     
     private var scrollViewOfPage = UIScrollView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+     
         self.view.addSubview(tableView)
         
         self.navigationController?.navigationItem.largeTitleDisplayMode = .never
-        //self.view.addSubview(backView)
-        //backView.frame = CGRect(x: 20, y: view.frame.height * 0.55, width: view.frame.width - 40, height: 200)
         self.navigationController?.navigationBar.prefersLargeTitles = true
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 100
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        //tableView.alwaysBounceVertical = false
-        //tableView.bounces = false
         scrollViewOfPage.bounces = false
 
-        //tableView.translatesAutoresizingMaskIntoConstraints = false
-        //self.backView.addSubview(tableView)
 
-        //tableView.frame = CGRect(x: 20, y: view.frame.height * 0.58, width: view.frame.width - 40, height: 200)
         tableView.register(PaymentTableViewCell.self, forCellReuseIdentifier: "cell")
-//        paymentTableView.delegate = self
-//        paymentTableView.dataSource = self
-        //menu = SideMenuNavigationController(rootViewController: self)
+
         self.title = "Wallet"
         let customView = ProfilePhotoView(imageButton: profileButton)
         
-//        let navItem2 = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshView))
         let navItem1 = UIBarButtonItem(customView: customView)
         
         let leftButton = UIBarButtonItem(title: "Hello, \(mainUser.name) \(mainUser.surname)", image: nil, primaryAction: nil, menu: nil)
@@ -104,8 +82,6 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             scrollViewOfPage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200),
-            //
-            //scrollViewOfPage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             scrollViewOfPage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollViewOfPage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollViewOfPage.heightAnchor.constraint(equalToConstant: 200),
@@ -133,8 +109,6 @@ class ViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             tableView.bottomAnchor.constraint(equalTo: addButton.topAnchor, constant: -10)
-            //paymentTableView.heightAnchor.constraint(equalToConstant: 50)
-
         ])
         
         
@@ -146,7 +120,6 @@ class ViewController: UIViewController {
         addButton.addTarget(self, action: #selector(openCategoriesCollectionVC), for: .touchUpInside)
         statisticButton.addTarget(self, action: #selector(goToStatisticViewController), for: .touchUpInside)
         
-        //print(scrollViewOfPage.subviews.count)
         profileButton.addTarget(self, action: #selector(profilePhotoAction), for: .touchUpInside)
         
         
@@ -160,14 +133,11 @@ class ViewController: UIViewController {
     
     @objc
     func refreshView() {
-        //self.mainUser = OneAndOnlyUser.shared.user
-        //self.view.setNeedsLayout()
         self.tableView.reloadData()
         guard let methodsOfPayment = mainUser.methodsOfPayment else {return}
         UIView.animate(withDuration: 3.0, delay: 0.0, options: .curveLinear) {
             self.pageControll.numberOfPages = self.mainUser.methodsOfPayment!.count
             self.configureScrollView(methodsOfPayment)
-           // self.view.layoutIfNeeded()
         }
 
         
@@ -195,55 +165,35 @@ class ViewController: UIViewController {
         pageControll.currentPage = page
         scrollViewOfPage.setContentOffset(CGPoint(x: CGFloat(page) * self.view.frame.size.width, y: 0), animated: true)
         tableView.reloadData()
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
-//        self.viewDidLayoutSubviews()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pageControll.frame = CGRect(x: 100, y: 420, width: self.view.frame.width - 200, height: 30)
     }
-    
-//    @objc
-//    func asd() {
-//        let vc = RegistrationViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-    
+ 
     @objc
     func openCategoriesCollectionVC() {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 75, height: 75)
         layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        //layout.estimatedItemSize = CGSize(width: 250, height: 250)
         let vc = CategoriesCollectionViewController(collectionViewLayout: layout)
-        //vc.navigationController?.navigationBar.prefersLargeTitles = false
-        //        vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
         
-        //        present(vc, animated: true, completion: nil)
     }
     
     @objc
     func changeValueOfScrollPage(_ sender: UIPageControl) {
         let current = sender.currentPage
-        //print(current)
-        //self.tableView.reloadData()
         scrollViewOfPage.setContentOffset(CGPoint(x: CGFloat(current) * self.view.frame.size.width, y: 0), animated: true)
     }
-    
-    //    @objc
-    //    func pri() {
-    //        self.navigationController?.navigationBar.prefersLargeTitles = true
-    //    }
-    //
+
     func configureScrollView(_ cards: [PaymentMethod]) {
         scrollViewOfPage.contentSize = CGSize(width: view.frame.size.width * CGFloat(cards.count), height: scrollViewOfPage.frame.size.height)
         scrollViewOfPage.isPagingEnabled = true
         scrollViewOfPage.showsHorizontalScrollIndicator = false
         for x in 0..<cards.count {
             let page = CardView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: scrollViewOfPage.frame.size.height), card: cards[x])
-            
             scrollViewOfPage.addSubview(page)
             
             NSLayoutConstraint.activate([
@@ -258,44 +208,13 @@ class ViewController: UIViewController {
 
 extension ViewController: UIScrollViewDelegate {
 
-   
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//
-//        pageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.width)))
-//        print("reload")
-//        tableView.reloadData()
-//        CheckArr.shared.array.append(pageControll.currentPage)
-//        //print(self.cheackArr.count)
-//    }
-    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-        
-//        UIView.animate(withDuration: 3.0, delay: 0.0, options: .curveLinear) {
-//            self.pageControll.numberOfPages = self.mainUser.methodsOfPayment!.count
-//            self.configureScrollView(methodsOfPayment)
-//           // self.view.layoutIfNeeded()
-//        }
-        
+ 
         if scrollView == self.scrollViewOfPage {
-//            if scrollView.contentOffset.x > 0.0 {
-//                print(con)
                 pageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.width)))
-                //print(pageControll.currentPage)
-                //print("reload")
                 CheckArr.shared.array.append(pageControll.currentPage)
                 print(CheckArr.shared.array.last!)
                 self.tableView.reloadData()
-//            } else if scrollView.contentOffset.x == 0.0 && pageControll.currentPage == 1 {
-//
-//                pageControll.currentPage = 0
-//                CheckArr.shared.array.append(pageControll.currentPage)
-//                print(CheckArr.shared.array.last!)
-//                self.tableView.reloadData()
-//
-//
-//            }
         }
         
         
@@ -307,8 +226,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
-    
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let index = CheckArr.shared.array.last {
             if OneAndOnlyUser.shared.user.methodsOfPayment![index].payments!.count > 0 {
@@ -318,37 +235,30 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         return 1
-        
     }
-    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if let indexOfMethod = CheckArr.shared.array.last {
             let deleteItem = OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![indexPath.row]
-            print(deleteItem)
             for indexOfDeleteItem in OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.indices {
                 if OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![indexOfDeleteItem] == deleteItem {
-//                    for categorieIndex in Categories.shared.categories.indices {
-//                        if Categories.shared.categories[categorieIndex].payments.count > 0 {
-//                            print(Categories.shared.categories[categorieIndex].payments.count)
-//                            for paymentIndex in Categories.shared.categories[categorieIndex].payments.indices {
-//                                print("\(Categories.shared.categories[categorieIndex].payments[paymentIndex])")
-//                                if Categories.shared.categories[categorieIndex].payments[paymentIndex] == deleteItem {
-//                                    print("deleted \(Categories.shared.categories[categorieIndex].payments[paymentIndex].sum)")
-//                                    Categories.shared.categories[categorieIndex].payments.remove(at: paymentIndex)
-//                                }
-//                            }
-//                        }
-//
-//                    }
-                    OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.remove(at: indexOfDeleteItem)
-                    tableView.deleteRows(at: [indexPath], with: .top)
-                    tableView.reloadData()
-                    return
+                    for categorieIndex in Categories.shared.categories.indices {
+                        if Categories.shared.categories[categorieIndex].payments.count > 0 {
+                            for paymentIndex in Categories.shared.categories[categorieIndex].payments.indices {
+                                let deletePaymentFromCategorie = Categories.shared.categories[categorieIndex].payments[paymentIndex]
+                                if deletePaymentFromCategorie == deleteItem {
+                                    Categories.shared.categories[categorieIndex].payments.remove(at: paymentIndex)
+                                    OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.remove(at: indexOfDeleteItem)
+                                    tableView.deleteRows(at: [indexPath], with: .top)
+                                    tableView.reloadData()
+                                    return
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            
         }
     }
 
@@ -377,18 +287,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 if payment == selectedPayment {
                     let vc = DetailViewController(payment: payment)
                     self.navigationController?.pushViewController(vc, animated: true)
-//                    for index in OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.indices {
-//                        if payment == OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![index] {
-//                            OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.remove(at: index)
-//                            let a = didSelectRowAt
-//
-//                            tableView.deleteRows(at: [a], with: .top)
-//                            tableView.reloadData()
-//                        }
-//                    }
                 }
             }
-            
         }
     }
 }
