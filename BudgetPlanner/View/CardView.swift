@@ -8,9 +8,9 @@
 import UIKit
 
 class CardView: UIView {
-
+    
     private var label = UILabel()
-
+    
     var card: PaymentMethod?
     
     private var imageOfCard = UIImageView()
@@ -48,7 +48,6 @@ class CardView: UIView {
         label.textColor = .systemGray
         
         imageOfCard.image = UIImage(named: card.nameOfImage)
-        
     }
     
     init(frame: CGRect, card: PaymentMethod) {
@@ -61,5 +60,4 @@ class CardView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

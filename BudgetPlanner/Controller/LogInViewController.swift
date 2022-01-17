@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 
 class LogInViewController: UIViewController {
-
+    
     private var emailOrPhoneTextField = TextFieldView()
     private var passwordTextField = TextFieldView()
     private var loginButton: UIButton = {
@@ -35,7 +35,7 @@ class LogInViewController: UIViewController {
         attStringForBottomButton.append(NSAttributedString(string: "Sign Up", attributes: [.foregroundColor : UIColor(named: "GreenColor") as Any]))
         
         signInButton.setAttributedTitle(attStringForBottomButton, for: .normal)
-
+        
         self.view.backgroundColor = .white
         let arrayOfViews = [emailOrPhoneTextField, passwordTextField, loginButton, signInButton]
         
@@ -47,14 +47,14 @@ class LogInViewController: UIViewController {
         emailOrPhoneTextField.inputTextField.autocorrectionType = .no
         emailOrPhoneTextField.inputTextField.keyboardType = .emailAddress
         emailOrPhoneTextField.inputTextField.autocapitalizationType = .none
-
+        
         
         passwordTextField.imageName = "Lock"
         passwordTextField.placeHolder = "Password"
         passwordTextField.inputTextField.autocorrectionType = .no
         passwordTextField.inputTextField.isSecureTextEntry = true
         passwordTextField.inputTextField.autocapitalizationType = .none
-
+        
         
         loginButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         signInButton.addTarget(self, action: #selector(goToRegistrationVC), for: .touchUpInside)
@@ -122,8 +122,5 @@ extension LogInViewController {
             signInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             signInButton.heightAnchor.constraint(equalToConstant: 40)
         ])
-        
-        
-        
     }
 }

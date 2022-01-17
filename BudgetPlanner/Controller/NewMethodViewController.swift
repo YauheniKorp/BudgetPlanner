@@ -29,7 +29,6 @@ class NewMethodViewController: UIViewController {
         label.attributedText = attText
         label.clipsToBounds = true
         label.layer.cornerRadius = 10
-        // label.backgroundColor = .systemGray6
         return label
     }()
     
@@ -69,13 +68,13 @@ class NewMethodViewController: UIViewController {
         button.setTitle("Create", for: .normal)
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-
+        
         self.view.addSubview(labelOfTextField)
         self.view.addSubview(titleLabel)
         self.view.addSubview(methodSegment)
@@ -126,39 +125,66 @@ class NewMethodViewController: UIViewController {
         ])
         
         createButton.addTarget(self, action: #selector(createNewMethod), for: .touchUpInside)
-
     }
     
     @objc
     func createNewMethod() {
-        
         if nameTextField.text != "" {
             let indexOfSegment = methodSegment.selectedSegmentIndex
             switch indexOfSegment {
             case 0:
-                //guard let nameOfMethod = nameTextField.text else {return }
-                let newMethod = PaymentMethod(nameOfImage: "cash", nameOfMethod: "\(nameTextField.text!)", payments: [])
-                OneAndOnlyUser.shared.user.methodsOfPayment?.append(newMethod)
-                let vc = ViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-                
-                //present(vc, animated: true, completion: nil)
-                //print("cash")
+                searchTheSameNameOfMethod(.cash)
             case 1:
+                searchTheSameNameOfMethod(.card)
+            default:
+                print("error")
+            }
+        }
+    }
+    
+    enum PaymentMethodEnum: String {
+        case card = "Card"
+        case cash = "Cash"
+    }
+    
+    func searchTheSameNameOfMethod(_ method: PaymentMethodEnum) {
+        switch method {
+            
+        case .card:
+            var count = 0
+            for value in OneAndOnlyUser.shared.user.methodsOfPayment! {
+                if value.nameOfMethod == nameTextField.text! {
+                    count += 1
+                    let alertVC = UIAlertController(title: "Error", message: "This name already exists, please enter another name!", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok!", style: .cancel, handler: nil)
+                    alertVC.addAction(okAction)
+                    present(alertVC, animated: true)
+                }
+            }
+            if count < 1 {
                 let newMethod = PaymentMethod(nameOfImage: "card", nameOfMethod: "\(nameTextField.text!)", payments: [])
                 OneAndOnlyUser.shared.user.methodsOfPayment?.append(newMethod)
                 let vc = ViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
-                //print("card")
-            default:
-                print("error")
+            }
             
+        case .cash:
+            var count = 0
+            for value in OneAndOnlyUser.shared.user.methodsOfPayment! {
+                if value.nameOfMethod == nameTextField.text! {
+                    count += 1
+                    let alertVC = UIAlertController(title: "Error", message: "This name already exists, please enter another name!", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok!", style: .cancel, handler: nil)
+                    alertVC.addAction(okAction)
+                    present(alertVC, animated: true)
+                }
+            }
+            if count < 1 {
+                let newMethod = PaymentMethod(nameOfImage: "cash", nameOfMethod: "\(nameTextField.text!)", payments: [])
+                OneAndOnlyUser.shared.user.methodsOfPayment?.append(newMethod)
+                let vc = ViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
-        }
-            
-        
     }
-
-  
-
 }

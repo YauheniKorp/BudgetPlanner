@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
     var payment: Payment
     
     let mainLabel: UILabel = {
@@ -60,11 +60,11 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.view.backgroundColor = .white
         
         self.view.addSubview(mainLabel)
@@ -73,7 +73,7 @@ class DetailViewController: UIViewController {
         self.view.addSubview(sumLabel)
         self.view.addSubview(keynoteLabel)
         self.view.addSubview(methodLabel)
-
+        
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
@@ -161,8 +161,5 @@ extension DetailViewController {
             methodLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             methodLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
-        
-        
     }
 }

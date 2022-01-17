@@ -9,7 +9,7 @@ import UIKit
 import Charts
 
 class StatisticViewController: UIViewController {
-
+    
     
     let mainLabel: UILabel = {
         let label = UILabel()
@@ -25,7 +25,7 @@ class StatisticViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.view.backgroundColor = .white
         
         barChart.translatesAutoresizingMaskIntoConstraints = false
@@ -63,12 +63,12 @@ class StatisticViewController: UIViewController {
         }
         let text = "Итого: \(sum)p"
         
-//        let attTextForCenterOfChart = NSMutableAttributedString(string: "\(sum)", attributes: [.foregroundColor:UIColor.red.cgColor, .font: UIFont.systemFont(ofSize: 30)])
+        //        let attTextForCenterOfChart = NSMutableAttributedString(string: "\(sum)", attributes: [.foregroundColor:UIColor.red.cgColor, .font: UIFont.systemFont(ofSize: 30)])
         barChart.centerText = text
         
-//        for x in 1..<10 {
-//            entries.append(PieChartDataEntry(value: Double(x), label: "\(x) value"))
-//        }
+        //        for x in 1..<10 {
+        //            entries.append(PieChartDataEntry(value: Double(x), label: "\(x) value"))
+        //        }
         let set = PieChartDataSet(entries: entries, label: "Categories")
         set.colors = ChartColorTemplates.pastel()
         let datat = PieChartData(dataSet: set)
@@ -88,11 +88,7 @@ class StatisticViewController: UIViewController {
             mainLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             mainLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
-//        barChart.center = view.center
     }
-
-
-
 }
 
 extension StatisticViewController: ChartViewDelegate {

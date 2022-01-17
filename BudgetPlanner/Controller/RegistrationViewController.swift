@@ -11,7 +11,7 @@ import FirebaseAuth
 
 
 class RegistrationViewController: UIViewController {
-
+    
     private var fullNameTextField = TextFieldView()
     private var surnameTextField = TextFieldView()
     private var emailOrPhoneTextField = TextFieldView()
@@ -38,7 +38,7 @@ class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let attributString = NSMutableAttributedString(string: "Sign ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 36.0)])
         attributString.append(NSAttributedString(string: "Up", attributes: [.foregroundColor : UIColor(named: "GreenColor")!, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 36.0)]))
         
@@ -58,7 +58,7 @@ class RegistrationViewController: UIViewController {
         fullNameTextField.imageName = "Profile"
         fullNameTextField.placeHolder = "First name"
         fullNameTextField.inputTextField.autocorrectionType = .no
-
+        
         
         surnameTextField.imageName = "Profile"
         surnameTextField.placeHolder = "Surname"
@@ -98,16 +98,12 @@ class RegistrationViewController: UIViewController {
     
     @objc
     func registerUser() {
-//        let vc = ViewController()
-//
-//        self.navigationController?.pushViewController(vc, animated: true)
         
         if fullNameTextField.inputTextField.text != "" && surnameTextField.inputTextField.text != "" && emailOrPhoneTextField.inputTextField.text != "" && confirmPasswordTextField.inputTextField.text != "" && passwordTextField.inputTextField.text != "" && passwordTextField.inputTextField.text == confirmPasswordTextField.inputTextField.text {
-
+            
             let newUser = User(name: fullNameTextField.inputTextField.text ?? "", surname: surnameTextField.inputTextField.text ?? "", password: passwordTextField.inputTextField.text ?? "", email: emailOrPhoneTextField.inputTextField.text ?? "")
             print(newUser.name)
             print(newUser.password)
-
             
             FirebaseAuth.Auth.auth().createUser(withEmail: newUser.email, password: newUser.password) { auth, error in
                 guard error == nil else {
@@ -115,12 +111,12 @@ class RegistrationViewController: UIViewController {
                     return
                 }
                 Users.shared.users.append(newUser)
-//                try! RealmModel.shared.realm.write {
-//                    var us = RealmModel.shared.realm.create(User.self)
-//                    us.email = newUser.email
-//                    //us = newUser
-//                    print(us.email)
-//                }
+                //                try! RealmModel.shared.realm.write {
+                //                    var us = RealmModel.shared.realm.create(User.self)
+                //                    us.email = newUser.email
+                //                    //us = newUser
+                //                    print(us.email)
+                //                }
                 self.checkLabel.text = "Registration was successful!"
             }
         }

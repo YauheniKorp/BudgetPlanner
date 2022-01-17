@@ -9,18 +9,18 @@ import Foundation
 import UIKit
 
 class TextFieldView: UIView {
-
+    
     private var backgroundView = UIView()
     private var leftImageView = UIImageView()
     var inputTextField = UITextField()
     
     var clos: ((String) -> Void) = { _ in }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUp()
@@ -32,7 +32,7 @@ class TextFieldView: UIView {
         
         addSubview(backgroundView)
         backgroundView.backgroundColor = .white
-
+        
         NSLayoutConstraint.activate([
             backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),

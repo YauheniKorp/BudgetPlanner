@@ -46,7 +46,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.addSubview(tableView)
-        
         self.navigationController?.navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.prefersLargeTitles = true
         tableView.delegate = self
@@ -54,7 +53,6 @@ class ViewController: UIViewController {
         tableView.rowHeight = 100
         tableView.translatesAutoresizingMaskIntoConstraints = false
         scrollViewOfPage.bounces = false
-        
         
         tableView.register(PaymentTableViewCell.self, forCellReuseIdentifier: "cell")
         
@@ -139,9 +137,6 @@ class ViewController: UIViewController {
             self.pageControll.numberOfPages = self.mainUser.methodsOfPayment!.count
             self.configureScrollView(methodsOfPayment)
         }
-        
-        
-        
     }
     
     @objc

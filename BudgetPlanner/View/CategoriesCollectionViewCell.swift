@@ -44,10 +44,5 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
             nameOfCategoris.trailingAnchor.constraint(equalTo: trailingAnchor),
             nameOfCategoris.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-        
-        
-        
     }
-    
-    
 }

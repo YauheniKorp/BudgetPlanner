@@ -11,7 +11,7 @@ import RealmSwift
 
 class CategorieViewController: UIViewController {
     
-   // var realm = try! Realm()
+    // var realm = try! Realm()
     
     lazy var tf = PaymentTextField(categorieOfPayment: categorie, deleteButton: deleteButton)
     let deleteButton = UIButton()
@@ -30,13 +30,6 @@ class CategorieViewController: UIViewController {
     }()
     
     let keyNoteLabel = TextFieldView()
-//    let keyNoteLabel: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "Write some keynote"
-//        textField.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return textField
-//    }()
     
     private var numInLabel: Double = 0 {
         didSet {
@@ -62,7 +55,6 @@ class CategorieViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 32)
         button.layer.cornerRadius = 5
         
-        //button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemGray2
         button.layer.borderWidth = 0.2
         button.layer.borderColor = UIColor.black.cgColor
@@ -79,7 +71,6 @@ class CategorieViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 32)
         button.layer.cornerRadius = 5
         button.setBackgroundColor(.black, forState: .highlighted)
-        //button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemGray2
         button.layer.borderWidth = 0.2
         button.backgroundColor = .systemOrange
@@ -95,10 +86,10 @@ class CategorieViewController: UIViewController {
     
     lazy var numButtons = createNumButtons()
     lazy var signButtons = createSignButtons()
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         self.view.addSubview(dateLabel)
         
@@ -111,14 +102,13 @@ class CategorieViewController: UIViewController {
         
         self.view.addSubview(tf)
         self.view.addSubview(dotButton)
-        //OneAndOnlyUser.shared.user.methodsOfPayment!.append(PaymentMethod(nameOfImage: "card", nameOfMethod: "carrrr"))
         
         let stackView1 = UIStackView(arrangedSubviews: [numButtons[0],numButtons[1],numButtons[2], signButtons[0]])
         let stackView2 = UIStackView(arrangedSubviews: [numButtons[3],numButtons[4],numButtons[5], signButtons[1]])
         let stackView3 = UIStackView(arrangedSubviews: [numButtons[6],numButtons[7],numButtons[8], signButtons[2]])
         let stackView4 = UIStackView(arrangedSubviews: [dotButton, numButtons[9], signButtons[4], signButtons[5]])
         let stackView5 = UIStackView(arrangedSubviews: [addButton])
-
+        
         let stackViews = [stackView1, stackView2, stackView3, stackView4, stackView5]
         let newStack = configureStackView(stackViews, self.view)
         newStack.translatesAutoresizingMaskIntoConstraints = false
@@ -127,7 +117,7 @@ class CategorieViewController: UIViewController {
         
         
         tf.translatesAutoresizingMaskIntoConstraints = false
-
+        
         self.view.backgroundColor = .white
         createConstraintsForCategorieVC(newStack, dateLabel, tf)
         deleteButton.addTarget(self, action: #selector(deleteNumFromTextField), for: .touchUpInside)
@@ -163,7 +153,6 @@ class CategorieViewController: UIViewController {
             button.titleLabel?.textAlignment = .center
             button.titleLabel?.font = UIFont.systemFont(ofSize: 32)
             button.layer.cornerRadius = 5
-            //button.translatesAutoresizingMaskIntoConstraints = false
             button.backgroundColor = .systemGray2
             button.layer.borderWidth = 0.2
             button.layer.borderColor = UIColor.black.cgColor
@@ -171,13 +160,12 @@ class CategorieViewController: UIViewController {
             button.setTitleColor(.white, for: .normal)
             button.addTarget(self, action: #selector(changeNumLabel), for: .touchUpInside)
             buttons.append(button)
-            
         }
         return buttons
     }
     
     func configureStackView(_ stackView: [UIStackView], _ view: UIView) -> UIStackView {
-
+        
         for i in stackView.indices {
             stackView[i].frame.size = CGSize(width: Int(view.frame.width) - 20, height: 50)
             stackView[i].spacing = 5
@@ -222,7 +210,6 @@ class CategorieViewController: UIViewController {
     @objc
     func changeNumLabel(_ sender: UIButton) {
         numInLabel = Double(sender.titleLabel?.text ?? "") ?? 0
-       // self.categorie.payments?.append(Payment(sum: <#T##Double#>, date: <#T##Date#>, keyNote: <#T##String?#>))
     }
     
     @objc
@@ -257,17 +244,6 @@ class CategorieViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension CategorieViewController {
@@ -285,7 +261,6 @@ extension CategorieViewController {
             dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             dateLabel.heightAnchor.constraint(equalToConstant: 70)
-//            dateLabel.bottomAnchor.constraint(equalTo: newStack.topAnchor, constant: 250)
         ])
         
         NSLayoutConstraint.activate([
@@ -307,12 +282,12 @@ extension CategorieViewController {
     }
 }
 extension UIButton {
-  func setBackgroundColor(_ color: UIColor, forState controlState: UIControl.State) {
-    let colorImage = UIGraphicsImageRenderer(size: CGSize(width: 1, height: 1)).image { _ in
-      color.setFill()
-      UIBezierPath(rect: CGRect(x: 0, y: 0, width: 1, height: 1)).fill()
+    func setBackgroundColor(_ color: UIColor, forState controlState: UIControl.State) {
+        let colorImage = UIGraphicsImageRenderer(size: CGSize(width: 1, height: 1)).image { _ in
+            color.setFill()
+            UIBezierPath(rect: CGRect(x: 0, y: 0, width: 1, height: 1)).fill()
+        }
+        setBackgroundImage(colorImage, for: controlState)
     }
-    setBackgroundImage(colorImage, for: controlState)
-  }
 }
 
