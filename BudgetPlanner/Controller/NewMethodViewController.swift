@@ -53,6 +53,7 @@ class NewMethodViewController: UIViewController {
     
     private let methodSegment: UISegmentedControl = {
         let segment = UISegmentedControl(items: ["Cash","Card"])
+        segment.selectedSegmentIndex = 0
         segment.setWidth(100, forSegmentAt: 0)
         segment.setWidth(100, forSegmentAt: 1)
         segment.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +94,6 @@ class NewMethodViewController: UIViewController {
             labelOfTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 100),
             labelOfTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             labelOfTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            //labelOfTextField.widthAnchor.constraint(equalToConstant: 120.0),
             labelOfTextField.heightAnchor.constraint(equalToConstant: 45)
         ])
         
@@ -108,7 +108,6 @@ class NewMethodViewController: UIViewController {
             nameOfMethodInSegment.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 10),
             nameOfMethodInSegment.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             nameOfMethodInSegment.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            //labelOfTextField.widthAnchor.constraint(equalToConstant: 120.0),
             nameOfMethodInSegment.heightAnchor.constraint(equalToConstant: 45)
         ])
         

@@ -12,7 +12,7 @@ import SideMenu
 class ViewController: UIViewController {
     var menu: SideMenuNavigationController?
     var mainUser = OneAndOnlyUser.shared.user
-        
+    
     private lazy var pageControll: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.backgroundColor = .clear
@@ -37,14 +37,14 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-        
+    
     private var profileButton = UIButton()
     
     private var scrollViewOfPage = UIScrollView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
         self.view.addSubview(tableView)
         
         self.navigationController?.navigationItem.largeTitleDisplayMode = .never
@@ -54,10 +54,10 @@ class ViewController: UIViewController {
         tableView.rowHeight = 100
         tableView.translatesAutoresizingMaskIntoConstraints = false
         scrollViewOfPage.bounces = false
-
-
+        
+        
         tableView.register(PaymentTableViewCell.self, forCellReuseIdentifier: "cell")
-
+        
         self.title = "Wallet"
         let customView = ProfilePhotoView(imageButton: profileButton)
         
@@ -124,10 +124,10 @@ class ViewController: UIViewController {
         
         
     }
-
+    
     @objc
     func goToStatisticViewController() {
-       let vc = StatisticViewController()
+        let vc = StatisticViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -139,9 +139,9 @@ class ViewController: UIViewController {
             self.pageControll.numberOfPages = self.mainUser.methodsOfPayment!.count
             self.configureScrollView(methodsOfPayment)
         }
-
         
-
+        
+        
     }
     
     @objc
@@ -163,6 +163,11 @@ class ViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         guard let page = CheckArr.shared.array.last else {return}
         pageControll.currentPage = page
+        
+        guard let methodsOfPayment = mainUser.methodsOfPayment else {return}
+        self.pageControll.numberOfPages = self.mainUser.methodsOfPayment!.count
+        self.configureScrollView(methodsOfPayment)
+        
         scrollViewOfPage.setContentOffset(CGPoint(x: CGFloat(page) * self.view.frame.size.width, y: 0), animated: true)
         tableView.reloadData()
     }
@@ -171,7 +176,7 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         pageControll.frame = CGRect(x: 100, y: 420, width: self.view.frame.width - 200, height: 30)
     }
- 
+    
     @objc
     func openCategoriesCollectionVC() {
         let layout = UICollectionViewFlowLayout()
@@ -187,7 +192,7 @@ class ViewController: UIViewController {
         let current = sender.currentPage
         scrollViewOfPage.setContentOffset(CGPoint(x: CGFloat(current) * self.view.frame.size.width, y: 0), animated: true)
     }
-
+    
     func configureScrollView(_ cards: [PaymentMethod]) {
         scrollViewOfPage.contentSize = CGSize(width: view.frame.size.width * CGFloat(cards.count), height: scrollViewOfPage.frame.size.height)
         scrollViewOfPage.isPagingEnabled = true
@@ -207,14 +212,14 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UIScrollViewDelegate {
-
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
- 
+        
         if scrollView == self.scrollViewOfPage {
-                pageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.width)))
-                CheckArr.shared.array.append(pageControll.currentPage)
-                print(CheckArr.shared.array.last!)
-                self.tableView.reloadData()
+            pageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.width)))
+            CheckArr.shared.array.append(pageControll.currentPage)
+            print(CheckArr.shared.array.last!)
+            self.tableView.reloadData()
         }
         
         
@@ -248,11 +253,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                             for paymentIndex in Categories.shared.categories[categorieIndex].payments.indices {
                                 let deletePaymentFromCategorie = Categories.shared.categories[categorieIndex].payments[paymentIndex]
                                 if deletePaymentFromCategorie == deleteItem {
-                                    Categories.shared.categories[categorieIndex].payments.remove(at: paymentIndex)
-                                    OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.remove(at: indexOfDeleteItem)
-                                    tableView.deleteRows(at: [indexPath], with: .top)
-                                    tableView.reloadData()
-                                    return
+                                    let alertVC = UIAlertController(title: "Removing payment", message: "Do you want to delete payment \(deleteItem.categorieOfPayment!.name!) (\(deleteItem.keyNote)) with sum \(deleteItem.sum)p", preferredStyle: .actionSheet)
+                                    let okAction = UIAlertAction(title: "Delete", style: .destructive) {_ in
+                                        Categories.shared.categories[categorieIndex].payments.remove(at: paymentIndex)
+                                        OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.remove(at: indexOfDeleteItem)
+                                        tableView.deleteRows(at: [indexPath], with: .middle)
+                                        tableView.reloadData()
+                                        return
+                                    }
+                                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                                    
+                                    alertVC.addAction(okAction)
+                                    alertVC.addAction(cancelAction)
+                                    present(alertVC, animated: true)
+                                    
                                 }
                             }
                         }
@@ -261,15 +275,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let indexOfMethod = CheckArr.shared.array.last {
             if OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments!.count > 0 {
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PaymentTableViewCell {
-                        cell.setUp(OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![indexPath.row])
-                        return cell
-                    }
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PaymentTableViewCell {
+                    cell.setUp(OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![indexPath.row])
+                    return cell
+                }
             } else {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PaymentTableViewCell {
                     return cell
@@ -280,7 +294,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
-       
+        
         if let indexOfMethod = CheckArr.shared.array.last {
             let selectedPayment = OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![didSelectRowAt.row]
             for payment in OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments! {
