@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8415F94D27970098003361D2 /* MethodsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415F94C27970098003361D2 /* MethodsCollectionViewController.swift */; };
+		8415F94F279700AE003361D2 /* MethodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415F94E279700AE003361D2 /* MethodCollectionViewCell.swift */; };
 		84502C2B270E1F4E003C8A97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84502C2A270E1F4E003C8A97 /* AppDelegate.swift */; };
 		84502C2D270E1F4E003C8A97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84502C2C270E1F4E003C8A97 /* SceneDelegate.swift */; };
 		84502C2F270E1F4E003C8A97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84502C2E270E1F4E003C8A97 /* ViewController.swift */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		1EC66195A5CE2819D2F2875A /* Pods-BudgetPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetPlanner.debug.xcconfig"; path = "Target Support Files/Pods-BudgetPlanner/Pods-BudgetPlanner.debug.xcconfig"; sourceTree = "<group>"; };
+		8415F94C27970098003361D2 /* MethodsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodsCollectionViewController.swift; sourceTree = "<group>"; };
+		8415F94E279700AE003361D2 /* MethodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodCollectionViewCell.swift; sourceTree = "<group>"; };
 		84502C27270E1F4E003C8A97 /* BudgetPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84502C2A270E1F4E003C8A97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84502C2C270E1F4E003C8A97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 				84C289BC2711E06F00781902 /* ProfilePhotoView.swift */,
 				84502C3E270E3AD0003C8A97 /* CardView.swift */,
 				84C289BE2711F01400781902 /* CategoriesCollectionViewCell.swift */,
+				8415F94E279700AE003361D2 /* MethodCollectionViewCell.swift */,
 				84C2669727732BE70079E469 /* PaymentTableViewCell.swift */,
 				8494ACE6276B7584008EA90B /* TextFieldViewRegistration.swift */,
 			);
@@ -161,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				84502C2E270E1F4E003C8A97 /* ViewController.swift */,
+				8415F94C27970098003361D2 /* MethodsCollectionViewController.swift */,
 				8482F34527908EC1005B37D6 /* DetailViewController.swift */,
 				84856AE92785BF1400A87D82 /* StatisticViewController.swift */,
 				8494ACE4276B7506008EA90B /* RegistrationViewController.swift */,
@@ -331,7 +337,9 @@
 				84C2669827732BE80079E469 /* PaymentTableViewCell.swift in Sources */,
 				8466F2572742E8A300E120B2 /* SettingsViewController.swift in Sources */,
 				84C289BD2711E07000781902 /* ProfilePhotoView.swift in Sources */,
+				8415F94F279700AE003361D2 /* MethodCollectionViewCell.swift in Sources */,
 				8482F34627908EC1005B37D6 /* DetailViewController.swift in Sources */,
+				8415F94D27970098003361D2 /* MethodsCollectionViewController.swift in Sources */,
 				8494ACE5276B7506008EA90B /* RegistrationViewController.swift in Sources */,
 				84C289C12711F5A300781902 /* Categorie.swift in Sources */,
 				84A881032782FEB700F42874 /* NewMethodViewController.swift in Sources */,
