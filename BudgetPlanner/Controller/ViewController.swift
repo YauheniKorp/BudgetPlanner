@@ -289,7 +289,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
-        
         if let indexOfMethod = CheckArr.shared.array.last {
             let selectedPayment = OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments![didSelectRowAt.row]
             for payment in OneAndOnlyUser.shared.user.methodsOfPayment![indexOfMethod].payments! {

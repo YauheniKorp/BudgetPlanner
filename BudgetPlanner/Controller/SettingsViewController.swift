@@ -80,12 +80,12 @@ class SettingsViewController: UIViewController {
         deleteMethodOfPaymentButton.addTarget(self, action: #selector(deleteMethod), for: .touchUpInside)
         deleteMethodOfPaymentButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let settingsButton = UIButton()
-        settingsButton.layer.cornerRadius = 5
-        settingsButton.setTitle("Settings", for: .normal)
-        settingsButton.backgroundColor = .gray
-        settingsButton.addTarget(self, action: #selector(addNewPaymentMethod), for: .touchUpInside)
-        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+//        let settingsButton = UIButton()
+//        settingsButton.layer.cornerRadius = 5
+//        settingsButton.setTitle("Settings", for: .normal)
+//        settingsButton.backgroundColor = .gray
+//        settingsButton.addTarget(self, action: #selector(addNewPaymentMethod), for: .touchUpInside)
+//        settingsButton.translatesAutoresizingMaskIntoConstraints = false
         
         let logOutButton = UIButton()
         logOutButton.setTitle("Log Out", for: .normal)
@@ -97,7 +97,7 @@ class SettingsViewController: UIViewController {
         
         bottomView.addSubview(addNewMethodOfPayment)
         bottomView.addSubview(deleteMethodOfPaymentButton)
-        bottomView.addSubview(settingsButton)
+//        bottomView.addSubview(settingsButton)
         bottomView.addSubview(logOutButton)
         
         mainView.addSubview(upperView)
@@ -146,12 +146,12 @@ class SettingsViewController: UIViewController {
             deleteMethodOfPaymentButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -70.0)
         ])
         
-        NSLayoutConstraint.activate([
-            settingsButton.topAnchor.constraint(equalTo: deleteMethodOfPaymentButton.bottomAnchor, constant: 10.0),
-            settingsButton.heightAnchor.constraint(equalToConstant: 45.0),
-            settingsButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 70.0),
-            settingsButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -70.0)
-        ])
+//        NSLayoutConstraint.activate([
+//            settingsButton.topAnchor.constraint(equalTo: deleteMethodOfPaymentButton.bottomAnchor, constant: 10.0),
+//            settingsButton.heightAnchor.constraint(equalToConstant: 45.0),
+//            settingsButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 70.0),
+//            settingsButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -70.0)
+//        ])
         
         NSLayoutConstraint.activate([
             logOutButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -100.0),
