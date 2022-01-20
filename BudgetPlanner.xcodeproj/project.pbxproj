@@ -27,7 +27,6 @@
 		8494ACE5276B7506008EA90B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494ACE4276B7506008EA90B /* RegistrationViewController.swift */; };
 		8494ACE7276B7584008EA90B /* TextFieldViewRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494ACE6276B7584008EA90B /* TextFieldViewRegistration.swift */; };
 		8494ACE9276BD0D6008EA90B /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494ACE8276BD0D6008EA90B /* LogInViewController.swift */; };
-		8494ACEB276E2520008EA90B /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494ACEA276E2520008EA90B /* RealmModel.swift */; };
 		84A881012773602600F42874 /* CheckArr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A881002773602600F42874 /* CheckArr.swift */; };
 		84A881032782FEB700F42874 /* NewMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A881022782FEB600F42874 /* NewMethodViewController.swift */; };
 		84C2669627720D210079E469 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84C2669527720D200079E469 /* GoogleService-Info.plist */; };
@@ -65,7 +64,6 @@
 		8494ACE4276B7506008EA90B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		8494ACE6276B7584008EA90B /* TextFieldViewRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldViewRegistration.swift; sourceTree = "<group>"; };
 		8494ACE8276BD0D6008EA90B /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		8494ACEA276E2520008EA90B /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		84A881002773602600F42874 /* CheckArr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckArr.swift; sourceTree = "<group>"; };
 		84A881022782FEB600F42874 /* NewMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMethodViewController.swift; sourceTree = "<group>"; };
 		84C2669527720D200079E469 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 		84C266922771F6990079E469 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8494ACEA276E2520008EA90B /* RealmModel.swift */,
 				84C289C02711F5A300781902 /* Categorie.swift */,
 				846AE73A27304E44009C10A5 /* Payment.swift */,
 				84502C40270EFEE1003C8A97 /* PaymentMethod.swift */,
@@ -327,7 +324,6 @@
 			files = (
 				84502C2F270E1F4E003C8A97 /* ViewController.swift in Sources */,
 				84C289C32711F68800781902 /* CategoriesCollectionViewController.swift in Sources */,
-				8494ACEB276E2520008EA90B /* RealmModel.swift in Sources */,
 				8494ACE9276BD0D6008EA90B /* LogInViewController.swift in Sources */,
 				846AE73B27304E44009C10A5 /* Payment.swift in Sources */,
 				846F93622715BE5600242AC5 /* PaymentTextField.swift in Sources */,

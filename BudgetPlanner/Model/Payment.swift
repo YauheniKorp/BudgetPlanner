@@ -9,15 +9,11 @@ import Foundation
 import RealmSwift
 
 class Payment: Object {
-    
-//    func hash(into hasher: inout Hasher) {
-//        hasher.combine(identifier)
-//    }
-    
+
     static func == (lhs: Payment, rhs: Payment) -> Bool {
         return lhs.date == rhs.date
     }
-    //var categorie: Categorie
+    
     @objc dynamic var sum: Double = 0.0
     @objc dynamic var date: Date = Date()
     @objc dynamic var keyNote: String = ""

@@ -31,8 +31,8 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         
         
-        let attStringForBottomButton = NSMutableAttributedString(string: "Don't have an account? ", attributes: [.foregroundColor : UIColor(named: "GrayColor") as Any])
-        attStringForBottomButton.append(NSAttributedString(string: "Sign Up", attributes: [.foregroundColor : UIColor(named: "GreenColor") as Any]))
+        let attStringForBottomButton = NSMutableAttributedString(string: "Don't have an account? ", attributes: [.foregroundColor: UIColor(named: "GrayColor") as Any])
+        attStringForBottomButton.append(NSAttributedString(string: "Sign Up", attributes: [.foregroundColor: UIColor(named: "GreenColor") as Any]))
         
         signInButton.setAttributedTitle(attStringForBottomButton, for: .normal)
         

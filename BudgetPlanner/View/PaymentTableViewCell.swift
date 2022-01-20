@@ -46,6 +46,4 @@ class PaymentTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
     }
-    
 }
-

@@ -53,7 +53,6 @@ class MethodCollectionViewCell: UICollectionViewCell {
         
         label.text = " " + methodOfPayment.nameOfMethod
         label.textColor = .systemGray
-        
         imageOfCard.image = UIImage(named: methodOfPayment.nameOfImage)
     }
 }

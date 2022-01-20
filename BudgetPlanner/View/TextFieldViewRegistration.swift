@@ -83,7 +83,7 @@ class TextFieldView: UIView {
     
     var placeHolder = "" {
         didSet {
-            inputTextField.attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [.foregroundColor : UIColor(named: "GrayColor") as Any])
+            inputTextField.attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [.foregroundColor: UIColor(named: "GrayColor") as Any])
         }
     }
 }

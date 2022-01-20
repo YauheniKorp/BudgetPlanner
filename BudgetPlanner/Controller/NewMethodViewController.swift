@@ -51,7 +51,7 @@ class NewMethodViewController: UIViewController {
     }()
     
     private let methodSegment: UISegmentedControl = {
-        let segment = UISegmentedControl(items: ["Cash","Card"])
+        let segment = UISegmentedControl(items: ["Cash", "Card"])
         segment.selectedSegmentIndex = 0
         segment.setWidth(100, forSegmentAt: 0)
         segment.setWidth(100, forSegmentAt: 1)

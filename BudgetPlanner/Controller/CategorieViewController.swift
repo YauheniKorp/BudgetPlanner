@@ -48,7 +48,7 @@ class CategorieViewController: UIViewController {
         }
     }
     
-    var addButton: UIButton = {
+    private var addButton: UIButton = {
         let button = UIButton()
         button.setTitle("Add!", for: .normal)
         button.titleLabel?.textAlignment = .center
@@ -64,7 +64,7 @@ class CategorieViewController: UIViewController {
         return button
     }()
     
-    var dotButton: UIButton = {
+    private var dotButton: UIButton = {
         let button = UIButton()
         button.setTitle(".", for: .normal)
         button.titleLabel?.textAlignment = .center
@@ -103,9 +103,9 @@ class CategorieViewController: UIViewController {
         self.view.addSubview(tf)
         self.view.addSubview(dotButton)
         
-        let stackView1 = UIStackView(arrangedSubviews: [numButtons[0],numButtons[1],numButtons[2], signButtons[0]])
-        let stackView2 = UIStackView(arrangedSubviews: [numButtons[3],numButtons[4],numButtons[5], signButtons[1]])
-        let stackView3 = UIStackView(arrangedSubviews: [numButtons[6],numButtons[7],numButtons[8], signButtons[2]])
+        let stackView1 = UIStackView(arrangedSubviews: [numButtons[0], numButtons[1], numButtons[2], signButtons[0]])
+        let stackView2 = UIStackView(arrangedSubviews: [numButtons[3], numButtons[4], numButtons[5], signButtons[1]])
+        let stackView3 = UIStackView(arrangedSubviews: [numButtons[6], numButtons[7], numButtons[8], signButtons[2]])
         let stackView4 = UIStackView(arrangedSubviews: [dotButton, numButtons[9], signButtons[4], signButtons[5]])
         let stackView5 = UIStackView(arrangedSubviews: [addButton])
         
@@ -125,14 +125,13 @@ class CategorieViewController: UIViewController {
     
     func createSignButtons() -> [UIButton] {
         var buttons = [UIButton]()
-        let titleOfButtons = ["+","−","×",".","=","÷"]
+        let titleOfButtons = ["+", "−", "×", ".", "=", "÷"]
         for i in 0..<titleOfButtons.count {
             let button = UIButton()
             button.setTitle(titleOfButtons[i], for: .normal)
             button.titleLabel?.textAlignment = .center
             button.titleLabel?.font = UIFont.systemFont(ofSize: 32)
             button.layer.cornerRadius = 5
-            //button.translatesAutoresizingMaskIntoConstraints = false
             button.backgroundColor = .systemOrange
             button.frame.size = CGSize(width: 50, height: 50)
             button.setTitleColor(.white, for: .normal)
@@ -146,7 +145,7 @@ class CategorieViewController: UIViewController {
     
     func createNumButtons() -> [UIButton] {
         var buttons = [UIButton]()
-        let titleOfButtons = ["1","2","3","4","5","6","7","8","9","0"]
+        let titleOfButtons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
         for num in 0..<titleOfButtons.count {
             let button = UIButton()
             button.setTitle(titleOfButtons[num], for: .normal)
@@ -226,7 +225,7 @@ class CategorieViewController: UIViewController {
             sender.setTitleColor(.white, for: .normal)
         }
     }
-    //MARK: - Delete number from label
+    
     @objc
     func deleteNumFromTextField() {
         if tf.categorieTextField.text?.count == 1 {
@@ -247,7 +246,7 @@ class CategorieViewController: UIViewController {
 }
 
 extension CategorieViewController {
-    //MARK: - Set constraints for views
+    
     func createConstraintsForCategorieVC (_ newStack: UIStackView, _ dateLabel: UILabel, _ tf: PaymentTextField ) {
         NSLayoutConstraint.activate([
             newStack.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height / 2),
@@ -276,9 +275,6 @@ extension CategorieViewController {
             keyNoteLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             keyNoteLabel.heightAnchor.constraint(equalToConstant: 50.0)
         ])
-        
-        
-        
     }
 }
 extension UIButton {
@@ -290,4 +286,3 @@ extension UIButton {
         setBackgroundImage(colorImage, for: controlState)
     }
 }
-

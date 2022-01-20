@@ -35,7 +35,7 @@ class PaymentTextField: UIView {
         NSLayoutConstraint.activate([
             paymentView.centerYAnchor.constraint(equalTo: centerYAnchor),
             paymentView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            paymentView.widthAnchor.constraint(equalToConstant: 40),
+            paymentView.widthAnchor.constraint(equalToConstant: 40)
         ])
         
         NSLayoutConstraint.activate([
@@ -49,8 +49,7 @@ class PaymentTextField: UIView {
             deleteButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             deleteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             deleteButton.heightAnchor.constraint(equalToConstant: 20),
-            deleteButton.widthAnchor.constraint(equalToConstant: 30),
-            
+            deleteButton.widthAnchor.constraint(equalToConstant: 30)
         ])
         
         categorieTextField.text = "0"

@@ -18,16 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScreen)
 
         let firstVC = LogInViewController()
-        
-       
 
 //        let firstNavController = SideMenuNavigationController(rootViewController: firstVC)
         let firstNavController = UINavigationController(rootViewController: firstVC)
-       
    
-        
-        
-        
         self.window?.rootViewController = firstNavController
         self.window?.makeKeyAndVisible()
     }
@@ -62,4 +56,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-

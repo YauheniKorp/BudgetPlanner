@@ -63,7 +63,6 @@ class CategoriesCollectionViewController: UICollectionViewController {
         if let cell = collectionView.cellForItem(at: indexPath) {
             cell.layer.borderWidth = 0
             cell.layer.borderColor = UIColor.clear.cgColor
-            
         }
     }
 }

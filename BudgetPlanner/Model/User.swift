@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class User: Object {
-    //@Persisted(primaryKey: true) var id: ObjectId
+    // @Persisted(primaryKey: true) var id: ObjectId
     @objc dynamic var name: String = ""
     @objc dynamic var surname: String = ""
     @objc dynamic var password: String = ""
@@ -17,7 +17,6 @@ class User: Object {
     dynamic var methodsOfPayment: [PaymentMethod]? = [PaymentMethod(nameOfImage: "cash", nameOfMethod: "My Cash", payments: []),
                                                       PaymentMethod(nameOfImage: "card", nameOfMethod: "My Card", payments: [])]
     @objc dynamic var profilePhoto: String = "nonPhoto"
-    //dynamic var payments: [Payment]? = [Payment(sum: 333.0, date: Date(), keyNote: "123", categorieOfPayment: Categorie(nameOfImage: "pen", name: "123"))]
     
     convenience init(name: String, surname: String, password: String, email: String, profilePhoto: String = "myPhoto") {
         self.init()
@@ -31,8 +30,8 @@ class User: Object {
 }
 
 class Users {
-    static var shared = Users()
     
+    static var shared = Users()
     var realmUsers: Results<User>?
     var users = [User]()
     
@@ -41,7 +40,6 @@ class Users {
 class OneAndOnlyUser {
     
     static var shared = OneAndOnlyUser()
+    var user = User(name: "Yauheni", surname: "Korp", password: "", email: "", profilePhoto: "myPhoto")
     
-    var user = User(name: "Yauheni", surname: "Korp", password: "", email: "",  profilePhoto: "myPhoto" )
 }
-

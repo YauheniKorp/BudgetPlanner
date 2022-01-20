@@ -40,17 +40,17 @@ class RegistrationViewController: UIViewController {
         super.viewDidLoad()
         
         let attributString = NSMutableAttributedString(string: "Sign ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 36.0)])
-        attributString.append(NSAttributedString(string: "Up", attributes: [.foregroundColor : UIColor(named: "GreenColor")!, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 36.0)]))
+        attributString.append(NSAttributedString(string: "Up", attributes: [.foregroundColor: UIColor(named: "GreenColor")!, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 36.0)]))
         
         signUpLabel.attributedText = attributString
         
-        let attStringForBottomButton = NSMutableAttributedString(string: "Have an account? ", attributes: [.foregroundColor : UIColor(named: "GrayColor") as Any])
-        attStringForBottomButton.append(NSAttributedString(string: "Log In", attributes: [.foregroundColor : UIColor(named: "GreenColor") as Any]))
+        let attStringForBottomButton = NSMutableAttributedString(string: "Have an account? ", attributes: [.foregroundColor: UIColor(named: "GrayColor") as Any])
+        attStringForBottomButton.append(NSAttributedString(string: "Log In", attributes: [.foregroundColor: UIColor(named: "GreenColor") as Any]))
         
         bottomButton.setAttributedTitle(attStringForBottomButton, for: .normal)
         
         self.view.backgroundColor = .white
-        let arrayOfViews = [emailOrPhoneTextField,passwordTextField,confirmPasswordTextField,fullNameTextField,bottomButton,signUpButton, signUpLabel, checkLabel, surnameTextField]
+        let arrayOfViews = [emailOrPhoneTextField, passwordTextField, confirmPasswordTextField, fullNameTextField, bottomButton, signUpButton, signUpLabel, checkLabel, surnameTextField]
         
         arrayOfViews.forEach {$0.translatesAutoresizingMaskIntoConstraints = false}
         arrayOfViews.forEach {view.addSubview($0)}

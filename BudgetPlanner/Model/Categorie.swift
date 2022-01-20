@@ -14,7 +14,6 @@ class Categorie: Object {
         self.init()
         self.nameOfImage = nameOfImage
         self.name = name
-        //self.payments = payments
     }
     
     @objc dynamic var nameOfImage: String?

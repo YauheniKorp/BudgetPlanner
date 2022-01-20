@@ -44,7 +44,6 @@ class StatisticViewController: UIViewController {
         }
         if arrOfPayments.count < 1 {
             entries.append(PieChartDataEntry(value: 1))
-            
         } else {
             for value in Categories.shared.categories {
                 var sumOfPayments = 0.0
@@ -54,21 +53,15 @@ class StatisticViewController: UIViewController {
                 if sumOfPayments > 0 {
                     entries.append(PieChartDataEntry(value: Double(sumOfPayments), label: value.name, data: value.name as AnyObject?))
                 }
-                
             }
         }
         var sum = 0.0
         for value in arrOfPayments {
             sum += value.sum
         }
+        
         let text = "Итого: \(sum)p"
-        
-        //        let attTextForCenterOfChart = NSMutableAttributedString(string: "\(sum)", attributes: [.foregroundColor:UIColor.red.cgColor, .font: UIFont.systemFont(ofSize: 30)])
         barChart.centerText = text
-        
-        //        for x in 1..<10 {
-        //            entries.append(PieChartDataEntry(value: Double(x), label: "\(x) value"))
-        //        }
         let set = PieChartDataSet(entries: entries, label: "Categories")
         set.colors = ChartColorTemplates.pastel()
         let datat = PieChartData(dataSet: set)
@@ -97,7 +90,7 @@ extension StatisticViewController: ChartViewDelegate {
         switch cat {
         case "Car":
             goToCategorieVC(.car)
-            //self.barChart.centerText = "Car: \(entry.y)p"
+            // self.barChart.centerText = "Car: \(entry.y)p"
         case "Gifts":
             goToCategorieVC(.gift)
         case "Food":

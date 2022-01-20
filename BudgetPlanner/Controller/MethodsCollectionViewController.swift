@@ -54,13 +54,6 @@ class MethodsCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDelegate
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         let item = OneAndOnlyUser.shared.user.methodsOfPayment![indexPath.row]
         if indexPath.row != 0 && indexPath.row != 1 {
@@ -68,7 +61,18 @@ class MethodsCollectionViewController: UICollectionViewController {
                 if OneAndOnlyUser.shared.user.methodsOfPayment![index].nameOfMethod == item.nameOfMethod {
                     let alert = UIAlertController(title: "Removing method of payment", message: "Do you want to delete this method of payment: \(OneAndOnlyUser.shared.user.methodsOfPayment![index].nameOfMethod)", preferredStyle: .actionSheet)
                     let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+                        guard let paymentsOfMethod = OneAndOnlyUser.shared.user.methodsOfPayment![index].payments else {return}
+                        for value in paymentsOfMethod {
+                            for index in Categories.shared.categories.indices {
+                                for paymentIndex in Categories.shared.categories[index].payments.indices {
+                                    if value == Categories.shared.categories[index].payments[paymentIndex] {
+                                        Categories.shared.categories[index].payments.remove(at: paymentIndex)
+                                    }
+                                }
+                            }
+                        }
                         OneAndOnlyUser.shared.user.methodsOfPayment!.remove(at: index)
+                        CheckArr.shared.array.append(0)
                         collectionView.deleteItems(at: [indexPath])
                     }
                     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
