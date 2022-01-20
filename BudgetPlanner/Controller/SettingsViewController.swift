@@ -80,12 +80,12 @@ class SettingsViewController: UIViewController {
         deleteMethodOfPaymentButton.addTarget(self, action: #selector(deleteMethod), for: .touchUpInside)
         deleteMethodOfPaymentButton.translatesAutoresizingMaskIntoConstraints = false
         
-//        let settingsButton = UIButton()
-//        settingsButton.layer.cornerRadius = 5
-//        settingsButton.setTitle("Settings", for: .normal)
-//        settingsButton.backgroundColor = .gray
-//        settingsButton.addTarget(self, action: #selector(addNewPaymentMethod), for: .touchUpInside)
-//        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        let statisticButton = UIButton()
+        statisticButton.layer.cornerRadius = 5
+        statisticButton.setTitle("Statistic", for: .normal)
+        statisticButton.backgroundColor = .gray
+        statisticButton.addTarget(self, action: #selector(goToStatisticViewController), for: .touchUpInside)
+        statisticButton.translatesAutoresizingMaskIntoConstraints = false
         
         let logOutButton = UIButton()
         logOutButton.setTitle("Log Out", for: .normal)
@@ -97,7 +97,7 @@ class SettingsViewController: UIViewController {
         
         bottomView.addSubview(addNewMethodOfPayment)
         bottomView.addSubview(deleteMethodOfPaymentButton)
-//        bottomView.addSubview(settingsButton)
+        bottomView.addSubview(statisticButton)
         bottomView.addSubview(logOutButton)
         
         mainView.addSubview(upperView)
@@ -146,12 +146,12 @@ class SettingsViewController: UIViewController {
             deleteMethodOfPaymentButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -70.0)
         ])
         
-//        NSLayoutConstraint.activate([
-//            settingsButton.topAnchor.constraint(equalTo: deleteMethodOfPaymentButton.bottomAnchor, constant: 10.0),
-//            settingsButton.heightAnchor.constraint(equalToConstant: 45.0),
-//            settingsButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 70.0),
-//            settingsButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -70.0)
-//        ])
+        NSLayoutConstraint.activate([
+            statisticButton.topAnchor.constraint(equalTo: deleteMethodOfPaymentButton.bottomAnchor, constant: 10.0),
+            statisticButton.heightAnchor.constraint(equalToConstant: 45.0),
+            statisticButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 70.0),
+            statisticButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -70.0)
+        ])
         
         NSLayoutConstraint.activate([
             logOutButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -100.0),
@@ -184,33 +184,18 @@ class SettingsViewController: UIViewController {
     }
     
     @objc
+    func goToStatisticViewController() {
+        let vc = StatisticViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc
     func deleteMethod() {
             let layout = UICollectionViewFlowLayout()
             layout.itemSize = CGSize(width: view.frame.width - 40, height: view.frame.height * 0.2)
             layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
             let vc = MethodsCollectionViewController(collectionViewLayout: layout)
             self.navigationController?.pushViewController(vc, animated: true)
-//            let alert = UIAlertController(title: "Delete method\n", message: "Fill in the fields below:", preferredStyle: .alert)
-//            alert.addTextField { tf in
-//                tf.placeholder = "Name of method"
-//            }
-//
-//            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//            let okAction = UIAlertAction(title: "Delete", style: .default) { _ in
-//                guard let methods = OneAndOnlyUser.shared.user.methodsOfPayment else {return}
-//
-//                guard let nameOfMethod = alert.textFields![0].text else {return}
-//                for value in methods {
-//                    if value.nameOfMethod == nameOfMethod {
-//                        OneAndOnlyUser.shared.user.methodsOfPayment.remove
-//                    }
-//                }
-//                OneAndOnlyUser.shared.user.methodsOfPayment?.append(newMethod)
-//            }
-//
-//            alert.addAction(cancelAction)
-//            alert.addAction(okAction)
-//            present(alert, animated: true, completion: nil)
         }
     
     @objc

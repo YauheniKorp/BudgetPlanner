@@ -95,27 +95,56 @@ extension StatisticViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         guard let cat = entry.data as? Categ.RawValue else {return}
         switch cat {
-        case "Car": self.barChart.centerText = "Car: \(entry.y)p"
-        case "Gifts": self.barChart.centerText = "Gifts: \(entry.y)p"
-        case "Food": self.barChart.centerText = "Food: \(entry.y)p"
-        case "Coffe": self.barChart.centerText = "Coffe: \(entry.y)p"
-        case "Clothes": self.barChart.centerText = "Clothes: \(entry.y)p"
-        case "Cosmetic": self.barChart.centerText = "Cosmetic: \(entry.y)p"
-        case "Entertainment": self.barChart.centerText = "Entertainment: \(entry.y)p"
-        case "Fitness": self.barChart.centerText = "Fitness: \(entry.y)p"
-        case "Hotel": self.barChart.centerText = "Hotel: \(entry.y)p"
-        case "House": self.barChart.centerText = "House: \(entry.y)p"
-        case "Medical": self.barChart.centerText = "Medical: \(entry.y)p"
-        case "People": self.barChart.centerText = "People: \(entry.y)p"
-        case "Phone": self.barChart.centerText = "Phone: \(entry.y)p"
-        case "Pill": self.barChart.centerText = "Pill: \(entry.y)p"
-        case "Plane": self.barChart.centerText = "Plane: \(entry.y)p"
-        case "Saving": self.barChart.centerText = "Saving: \(entry.y)p"
-        case "Shopping": self.barChart.centerText = "Shopping: \(entry.y)p"
-        case "Taxi": self.barChart.centerText = "Taxi: \(entry.y)p"
-        case "Transport": self.barChart.centerText = "Transport: \(entry.y)p"
+        case "Car":
+            goToCategorieVC(.car)
+            //self.barChart.centerText = "Car: \(entry.y)p"
+        case "Gifts":
+            goToCategorieVC(.gift)
+        case "Food":
+            goToCategorieVC(.food)
+        case "Coffe":
+            goToCategorieVC(.coffe)
+        case "Clothes":
+            goToCategorieVC(.clothes)
+        case "Cosmetic":
+            goToCategorieVC(.cosmetic)
+        case "Entertainment":
+            goToCategorieVC(.entertainment)
+        case "Fitness":
+            goToCategorieVC(.fitness)
+        case "Hotel":
+            goToCategorieVC(.hotel)
+        case "House":
+            goToCategorieVC(.house)
+        case "Medical":
+            goToCategorieVC(.medical)
+        case "People":
+            goToCategorieVC(.people)
+        case "Phone":
+            goToCategorieVC(.phone)
+        case "Pill":
+            goToCategorieVC(.pill)
+        case "Plane":
+            goToCategorieVC(.plane)
+        case "Saving":
+            goToCategorieVC(.saving)
+        case "Shopping":
+            goToCategorieVC(.shopping)
+        case "Taxi":
+            goToCategorieVC(.taxi)
+        case "Transport":
+            goToCategorieVC(.transport)
         default: print("error")
         }
     }
     
+    func goToCategorieVC(_ categorie: Categ) {
+        for value in Categories.shared.categories {
+            if value.name == categorie.rawValue {
+                let vc = CategoriePaymentsViewController()
+                vc.categorie = value
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
 }
